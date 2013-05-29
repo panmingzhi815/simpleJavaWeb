@@ -1,0 +1,9 @@
+.table{
+	border: 1px solid #aabbcc;
+	border-collapse:collapse;
+	padding: 3px;
+	margin: 2px;
+}
+.table input select{
+	width: 100px;
+}
