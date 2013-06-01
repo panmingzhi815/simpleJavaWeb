@@ -180,6 +180,7 @@
 						<configuration>
 							<sources>
 								<source>src/main/resource</source>
+								<source>src/main/java</source>
 								<source>src/test/resource</source>
 								<source>src/test/java</source>
 							</sources>
