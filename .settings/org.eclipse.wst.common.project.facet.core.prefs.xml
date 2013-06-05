@@ -9,4 +9,9 @@
   <facet id="maven"/>
   <facet id="jst.web.jstl"/>
   <facet id="jst.web"/>
+  <facet id="me.spring">
+    <node name="libprov">
+      <attribute name="provider-id" value="maven-lib-provider"/>
+    </node>
+  </facet>
 </root>

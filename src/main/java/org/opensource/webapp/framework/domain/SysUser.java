@@ -1,22 +1,21 @@
 package org.opensource.webapp.framework.domain;
 
-import java.util.Set;
+import javax.persistence.Entity;
 
-public class SysUser {
+@Entity(name = "Holiday")
+public class SysUser extends BasicDomain{
 
-	private String id;
 	private String nickName;
 	private String loginName;
 	private String loginPassword;
-	private String createName;
-	private Set<SysRole> sysRoleSet;
 
-	public String getId() {
-		return id;
+	public SysUser() {
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public SysUser(String nickName, String loginName, String loginPassword) {
+		this.nickName = nickName;
+		this.loginName = loginName;
+		this.loginPassword = loginPassword;
 	}
 
 	public String getNickName() {
@@ -41,22 +40,6 @@ public class SysUser {
 
 	public void setLoginPassword(String loginPassword) {
 		this.loginPassword = loginPassword;
-	}
-
-	public String getCreateName() {
-		return createName;
-	}
-
-	public void setCreateName(String createName) {
-		this.createName = createName;
-	}
-
-	public Set<SysRole> getSysRoleSet() {
-		return sysRoleSet;
-	}
-
-	public void setSysRoleSet(Set<SysRole> sysRoleSet) {
-		this.sysRoleSet = sysRoleSet;
 	}
 
 }

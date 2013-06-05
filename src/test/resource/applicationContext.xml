@@ -14,25 +14,20 @@
 	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
 	xmlns:context="http://www.springframework.org/schema/context">
 
-	<!-- 扫描spring注解 -->
 	<context:component-scan base-package="org.opensource.webapp"/> 
 
-	<!-- 实例对象管理工厂，相当于sessionFactory -->
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
 		<property name="persistenceUnitName" value="sqlserver2008" />
 	</bean>
 	
-	<!-- 初始事务管理 -->
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 	
-	<!-- 扫描带 @Transactional 的事务注解 -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
-	<!-- 扫描采用spring data jpa特性的包，并注入实体会话与事务 -->
-	<jpa:repositories base-package="org.opensource.webapp.framework.service.dao" 
+	<jpa:repositories base-package="org.opensource.webapp.framework.dao" 
 	entity-manager-factory-ref="entityManagerFactory"  
 	transaction-manager-ref="transactionManager"/> 
 
