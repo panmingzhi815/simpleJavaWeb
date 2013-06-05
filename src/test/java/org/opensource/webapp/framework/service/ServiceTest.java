@@ -16,6 +16,7 @@ public class ServiceTest{
 	
 	@After
 	public void after(){
+		if(ctx != null)
 		ctx.close();
 	}
 
