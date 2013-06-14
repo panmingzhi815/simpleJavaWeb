@@ -5,8 +5,11 @@ import javax.persistence.Entity;
 @Entity(name = "Holiday")
 public class SysUser extends BasicDomain{
 
+	//昵称
 	private String nickName;
+	///登陆用户名
 	private String loginName;
+	//登陆密码
 	private String loginPassword;
 
 	public SysUser() {
