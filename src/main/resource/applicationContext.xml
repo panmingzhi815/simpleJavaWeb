@@ -35,5 +35,4 @@
 	<jpa:repositories base-package="org.opensource.webapp.framework.service.dao" 
 	entity-manager-factory-ref="entityManagerFactory"  
 	transaction-manager-ref="transactionManager"/> 
-
 </beans>
