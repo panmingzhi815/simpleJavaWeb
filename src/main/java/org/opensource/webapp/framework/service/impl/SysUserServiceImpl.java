@@ -6,6 +6,7 @@ import org.opensource.webapp.framework.domain.PageResult;
 import org.opensource.webapp.framework.domain.SysUser;
 import org.opensource.webapp.framework.service.BasicService;
 import org.opensource.webapp.framework.service.SysUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("sysUserService") 
 public class SysUserServiceImpl extends BasicService<SysUser> implements SysUserService{
 
-	 @Qualifier
+	 @Autowired
 	 private SysUserDao sysUserDao;
 	 
 	 @Override

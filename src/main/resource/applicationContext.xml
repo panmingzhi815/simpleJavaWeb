@@ -20,7 +20,7 @@
 	<!-- 实例对象管理工厂，相当于sessionFactory -->
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
-		<property name="persistenceUnitName" value="derby" />
+		<property name="persistenceUnitName" value="mysql" />
 	</bean>
 	
 	<!-- 初始事务管理 -->

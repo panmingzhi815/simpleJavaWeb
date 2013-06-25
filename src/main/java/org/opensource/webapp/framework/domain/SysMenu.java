@@ -4,17 +4,21 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity(name="SysMenu")
 public class SysMenu extends BasicDomain{
 
+	@ManyToOne
+	@JoinColumn(name="parent")
 	private SysMenu parent;
 	private String levelCode;
 	private String text;
 	private String url;
 	private String iconCls;
-	private int order;
+	private int ordinal;
 	
 	//直接拥有该菜单的用户
 	@ManyToMany(mappedBy="sysMenuSet",cascade=CascadeType.REMOVE)
@@ -64,12 +68,12 @@ public class SysMenu extends BasicDomain{
 		this.iconCls = iconCls;
 	}
 
-	public int getOrder() {
-		return order;
+	public int getOrdinal() {
+		return ordinal;
 	}
 
-	public void setOrder(int order) {
-		this.order = order;
+	public void setOrdinal(int ordinal) {
+		this.ordinal = ordinal;
 	}
 
 	public Set<SysUser> getSysUserSet() {
