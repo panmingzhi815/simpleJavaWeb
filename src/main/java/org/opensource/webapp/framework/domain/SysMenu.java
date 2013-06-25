@@ -1,29 +1,35 @@
 package org.opensource.webapp.framework.domain;
 
-public class SysMenu {
+import java.util.Set;
 
-	private String id;
-	private String pid;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+
+@Entity(name="SysMenu")
+public class SysMenu extends BasicDomain{
+
+	private SysMenu parent;
 	private String levelCode;
 	private String text;
 	private String url;
 	private String iconCls;
 	private int order;
+	
+	//直接拥有该菜单的用户
+	@ManyToMany(mappedBy="sysMenuSet",cascade=CascadeType.REMOVE)
+	private Set<SysUser> sysUserSet;
+	
+	//直接拥有该菜单的角色
+	@ManyToMany(mappedBy="sysMenuSet",cascade=CascadeType.REMOVE)
+	private Set<SysRole> sysRoleSet;
 
-	public String getId() {
-		return id;
+	public SysMenu getParent() {
+		return parent;
 	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getPid() {
-		return pid;
-	}
-
-	public void setPid(String pid) {
-		this.pid = pid;
+	public void setParent(SysMenu parent) {
+		this.parent = parent;
 	}
 
 	public String getLevelCode() {
@@ -66,4 +72,21 @@ public class SysMenu {
 		this.order = order;
 	}
 
+	public Set<SysUser> getSysUserSet() {
+		return sysUserSet;
+	}
+
+	public void setSysUserSet(Set<SysUser> sysUserSet) {
+		this.sysUserSet = sysUserSet;
+	}
+
+	public Set<SysRole> getSysRoleSet() {
+		return sysRoleSet;
+	}
+
+	public void setSysRoleSet(Set<SysRole> sysRoleSet) {
+		this.sysRoleSet = sysRoleSet;
+	}
+	
+	
 }

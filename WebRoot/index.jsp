@@ -31,8 +31,7 @@
 		
 		   new Ext.Viewport({    
 		        title: "Viewport",    
-		        layout: "border",   
-		//一个配置对象，这个对象将被添加到所有加入这个容器的组件中，通过 items 注册，或者通过 add 方法，或者 insert 方法。 defaults属性可以包含任意个name/value属性对，这些属性将会被添加到每一个元素中   
+		        layout: "border",      
 		        defaults: {     
 		            frame: true    
 		        },    

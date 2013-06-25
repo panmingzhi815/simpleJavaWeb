@@ -1,13 +1,55 @@
 package org.opensource.webapp.framework.domain;
 
-import javax.persistence.Entity;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-@Entity(name = "Holiday")
-public class SysUser extends BasicDomain{
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.opensource.webapp.framework.domain.enums.SysUserState;
+
+@Entity(name = "SysUser")
+public class SysUser extends BasicDomain {
 
 	private String nickName;
 	private String loginName;
 	private String loginPassword;
+	
+	@Lob
+	@Basic(fetch=FetchType.EAGER)
+	private byte[] headImage;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createTime;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date lastLoginTime;
+	
+	@Enumerated(EnumType.STRING)
+	private SysUserState sysUserState;
+	//用户所拥有的角色
+	@ManyToMany(cascade=CascadeType.REMOVE)
+	@JoinTable(name="SysUser_SysRole",joinColumns={@JoinColumn(name="SysUserId",referencedColumnName="id")},
+	inverseJoinColumns={@JoinColumn(name="SysRoleId",referencedColumnName="id")})
+	private Set<SysRole> sysRoleSet;
+	
+	//用户直接拥有的菜单
+	@ManyToMany(cascade=CascadeType.REMOVE)
+	@JoinTable(name="SysUser_SysMenu",joinColumns={@JoinColumn(name="SysUserId",referencedColumnName="id")},
+	inverseJoinColumns={@JoinColumn(name="SysMenuId",referencedColumnName="id")})
+	private Set<SysMenu> sysMenuSet;
 
 	public SysUser() {
 	}
@@ -40,6 +82,63 @@ public class SysUser extends BasicDomain{
 
 	public void setLoginPassword(String loginPassword) {
 		this.loginPassword = loginPassword;
+	}
+
+	public byte[] getHeadImage() {
+		return headImage;
+	}
+
+	public void setHeadImage(byte[] headImage) {
+		this.headImage = headImage;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public Date getLastLoginTime() {
+		return lastLoginTime;
+	}
+
+	public void setLastLoginTime(Date lastLoginTime) {
+		this.lastLoginTime = lastLoginTime;
+	}
+
+	public SysUserState getSysUserState() {
+		return sysUserState;
+	}
+
+	public void setSysUserState(SysUserState sysUserState) {
+		this.sysUserState = sysUserState;
+	}
+
+	public Set<SysRole> getSysRoleSet() {
+		return sysRoleSet;
+	}
+
+	public void setSysRoleSet(Set<SysRole> sysRoleSet) {
+		this.sysRoleSet = sysRoleSet;
+	}
+
+	public Set<SysMenu> getSysMenuSet() {
+		return sysMenuSet;
+	}
+
+	public void setSysMenuSet(Set<SysMenu> sysMenuSet) {
+		this.sysMenuSet = sysMenuSet;
+	}
+	
+	public Set<SysMenu> getAllSysMenuSet(){
+		Set<SysMenu> sysMenuSet = new HashSet<SysMenu>();
+		sysMenuSet.addAll(getSysMenuSet());	
+		for (SysRole sysRole : getSysRoleSet()) {
+			sysMenuSet.addAll(sysRole.getSysMenuSet());
+		}
+		return sysMenuSet;
 	}
 
 }

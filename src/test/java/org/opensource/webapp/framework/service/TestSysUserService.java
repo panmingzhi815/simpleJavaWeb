@@ -9,7 +9,7 @@ public class TestSysUserService extends ServiceTest{
 	public void testSaveSysUser(){
 		 SysUser sysUser = new SysUser("xiaopan", "panmingzhi815", "123456");
 		 SysUserService sysUserService = ctx.getBean(SysUserService.class);
-		 sysUserService.createSysUser(sysUser);
+		 sysUserService.saveSysUser(sysUser);
 	}
 	
 }

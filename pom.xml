@@ -100,6 +100,13 @@
 			<version>${jpa.version}</version>
 		</dependency>
 
+		<!-- jpa criteria easy implements -->
+		<dependency>
+			<groupId>uaihebert.com</groupId>
+			<artifactId>EasyCriteria</artifactId>
+			<version>2.1.0</version>
+		</dependency>
+
 		<!-- hibernate4 -->
 		<dependency>
 			<groupId>org.hibernate</groupId>

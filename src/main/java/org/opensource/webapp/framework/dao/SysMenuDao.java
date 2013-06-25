@@ -1,8 +1,10 @@
 package org.opensource.webapp.framework.dao;
 
 import org.opensource.webapp.framework.domain.SysMenu;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface SysMenuDao  extends CrudRepository<SysMenu, Long>{
+public interface SysMenuDao extends PagingAndSortingRepository<SysMenu, Long>,
+		JpaSpecificationExecutor<SysMenu> {
 
 }
