@@ -11,7 +11,7 @@ public class ServiceTest{
 	
 	@Before
 	public void before() {
-		ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+		ctx = new ClassPathXmlApplicationContext("classpath*:applicationContext.xml");
 	}
 	
 	@After

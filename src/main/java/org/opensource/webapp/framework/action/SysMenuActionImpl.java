@@ -3,6 +3,7 @@ package org.opensource.webapp.framework.action;
 import java.util.Map;
 
 import org.opensource.webapp.framework.service.SysMenuService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value="/menu")
 public class SysMenuActionImpl {
 	
-	@Qualifier
+	@Autowired
 	private SysMenuService sysMenuService;
 	
 	@RequestMapping(value="/MyJsp")
