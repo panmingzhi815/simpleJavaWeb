@@ -7,7 +7,6 @@ import org.opensource.webapp.framework.domain.SysUser;
 import org.opensource.webapp.framework.service.BasicService;
 import org.opensource.webapp.framework.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
