@@ -22,10 +22,11 @@ import org.opensource.webapp.framework.domain.enums.SysUserState;
 @Entity(name = "SysUser")
 public class SysUser extends BasicDomain {
 
-	private String nickName;
 	private String loginName;
 	private String loginPassword;
-	
+	private String nickName;
+	private String phone;
+	private String email;
 	@Lob
 	@Basic(fetch=FetchType.EAGER)
 	private byte[] headImage;
@@ -42,13 +43,13 @@ public class SysUser extends BasicDomain {
 	@ManyToMany(cascade=CascadeType.REMOVE)
 	@JoinTable(name="SysUser_SysRole",joinColumns={@JoinColumn(name="SysUserId",referencedColumnName="id")},
 	inverseJoinColumns={@JoinColumn(name="SysRoleId",referencedColumnName="id")})
-	private Set<SysRole> sysRoleSet;
+	private Set<SysRole> sysRoleSet = new HashSet<SysRole>();
 	
 	//用户直接拥有的菜单
 	@ManyToMany(cascade=CascadeType.REMOVE)
 	@JoinTable(name="SysUser_SysMenu",joinColumns={@JoinColumn(name="SysUserId",referencedColumnName="id")},
 	inverseJoinColumns={@JoinColumn(name="SysMenuId",referencedColumnName="id")})
-	private Set<SysMenu> sysMenuSet;
+	private Set<SysMenu> sysMenuSet = new HashSet<SysMenu>();
 
 	public SysUser() {
 	}
@@ -57,14 +58,6 @@ public class SysUser extends BasicDomain {
 		this.nickName = nickName;
 		this.loginName = loginName;
 		this.loginPassword = loginPassword;
-	}
-
-	public String getNickName() {
-		return nickName;
-	}
-
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
 	}
 
 	public String getLoginName() {
@@ -81,6 +74,30 @@ public class SysUser extends BasicDomain {
 
 	public void setLoginPassword(String loginPassword) {
 		this.loginPassword = loginPassword;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public byte[] getHeadImage() {
@@ -130,7 +147,7 @@ public class SysUser extends BasicDomain {
 	public void setSysMenuSet(Set<SysMenu> sysMenuSet) {
 		this.sysMenuSet = sysMenuSet;
 	}
-	
+
 	public Set<SysMenu> getAllSysMenuSet(){
 		Set<SysMenu> sysMenuSet = new HashSet<SysMenu>();
 		sysMenuSet.addAll(getSysMenuSet());	

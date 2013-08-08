@@ -1,4 +1,4 @@
-package org.opensource.webapp.framework.domain;
+package org.opensource.webapp.framework.domain.page;
 
 import java.util.Map;
 import java.util.Set;

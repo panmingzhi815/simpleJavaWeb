@@ -9,9 +9,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import org.opensource.webapp.framework.domain.PageParam;
-import org.opensource.webapp.framework.domain.PageParam.SortType;
-import org.opensource.webapp.framework.domain.PageResult;
+import org.opensource.webapp.framework.domain.page.PageParam;
+import org.opensource.webapp.framework.domain.page.PageResult;
+import org.opensource.webapp.framework.domain.page.PageParam.SortType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -21,39 +21,41 @@ import org.springframework.data.jpa.domain.Specification;
 
 public class BasicService<T> {
 
-	public PageRequest buildPageRequest(PageParam pageParam){
+	public PageRequest buildPageRequest(PageParam pageParam) {
 		List<Order> orders = new ArrayList<Sort.Order>();
-		Set<String> keySet = pageParam.getSortMap().keySet();
-		for (String key : keySet) {
-			SortType sortType = pageParam.getSortMap().get(key);
-			Order order = null;
-			if(sortType == SortType.ASC)
-				order = new Order(Direction.ASC, key);
-			else
-				order = new Order(Direction.DESC, key);
-			orders.add(order);
+		Sort sort = null;
+		if (pageParam.getSortMap() != null) {
+			Set<String> keySet = pageParam.getSortMap().keySet();
+			for (String key : keySet) {
+				SortType sortType = pageParam.getSortMap().get(key);
+				Order order = null;
+				if (sortType == SortType.ASC)
+					order = new Order(Direction.ASC, key);
+				else
+					order = new Order(Direction.DESC, key);
+				orders.add(order);
+			}
+			if (orders.size() > 0)
+				sort = new Sort(orders);
 		}
-		Sort sort = new Sort(orders);
-		return new PageRequest(pageParam.getPageNo(), pageParam.getLimit(), sort);
+		return new PageRequest(pageParam.getStart(), pageParam.getLimit(),
+				sort);
 	}
-	
-	public PageResult<T> buildPageResult(Page<T> page){
+
+	public PageResult<T> buildPageResult(Page<T> page) {
 		PageResult<T> pageResult = new PageResult<T>();
 		pageResult.setRows(page.getContent());
 		pageResult.setTotal(page.getTotalElements());
 		return pageResult;
 	}
-	
-	public Specification<T> buildSpecification(T t){
-		Specification<T> specification = new Specification<T>() {
+
+	public Specification<T> buildSpecification(T t) {
+		return new Specification<T>() {
 			@Override
-			public Predicate toPredicate(Root<T> root,
-					CriteriaQuery<?> query, CriteriaBuilder cb) {
-				// TODO Auto-generated method stub
-				return null;
+			public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
+				return builder.conjunction();
 			}
 		};
-		return specification;
 	}
-	
+
 }

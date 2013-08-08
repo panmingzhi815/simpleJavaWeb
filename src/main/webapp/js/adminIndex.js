@@ -6,7 +6,7 @@ var _menus = [{
 				"menuId": "11",
 				"menuName": "用户管理",
 				"icon": "icon-user",
-				"url": "/user/userManager.sys"
+				"url": "/user/userManager.user"
 			},{
 				"menuId": "12",
 				"menuName": "角色管理",

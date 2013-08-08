@@ -1,49 +1,74 @@
-*{font-size:12px; font-family:Tahoma,Verdana,Î¢ÈíÑÅºÚ,ÐÂËÎÌå}
+* {
+	font-size: 12px;
+	font-family: Tahoma, Verdana, Î¢ÈíÑÅºÚ, ÐÂËÎÌå
+}
 
-fieldset{
+fieldset {
 	-moz-border-radius: 5px;
 }
-fieldset input{
+
+fieldset input {
 	width: 100px;
 }
-.nav{
-	list-style-type:none;
-	margin:0px; 
-	padding:10px;
+
+.nav {
+	list-style-type: none;
+	margin: 0px;
+	padding: 10px;
 }
-.nav li{ 
-	padding:0px;
+
+.nav li {
+	padding: 0px;
 	line-height: 26px;
 }
-.nav li div{
-	margin:2px 0px;
-	padding-left:10px;
-	padding-top:2px; 
-}
-.nav li div:hover{
-	border:1px dashed #99BBE8; 
-	background:#E0ECFF;
-	cursor:pointer;
-}
-.li_hover{
-	border:1px dashed #99BBE8; 
-	background:#E0ECFF;
-	cursor:pointer;
+
+.nav li div {
+	margin: 2px 0px;
+	padding-left: 10px;
+	padding-top: 2px;
 }
 
-
-
-
-
-.icon-menu{
-	background:url('../images/icon/menu.png') no-repeat center center;
+.nav li div:hover {
+	border: 1px dashed #99BBE8;
+	background: #E0ECFF;
+	cursor: pointer;
 }
-.icon-role{
-	background:url('../images/icon/role.png')  no-repeat center center;
+
+.li_hover {
+	border: 1px dashed #99BBE8;
+	background: #E0ECFF;
+	cursor: pointer;
 }
-.icon-user{
-	background:url('../images/icon/user.png')  no-repeat center center;
+
+.formTitle {
+	font-size: 14px;
+	font-weight: bold;
+	padding: 5px 0;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #ccc;
 }
-.icon-promession{
-	background:url('../images/icon/promession.png') no-repeat center center;
+
+.formDiv {
+	margin-bottom: 5px;
+}
+
+.formDiv label {
+	display: inline-block;
+	width: 80px;
+}
+
+.icon-menu {
+	background: url('../images/icon/menu.png') no-repeat center center;
+}
+
+.icon-role {
+	background: url('../images/icon/role.png') no-repeat center center;
+}
+
+.icon-user {
+	background: url('../images/icon/user.png') no-repeat center center;
+}
+
+.icon-promession {
+	background: url('../images/icon/promession.png') no-repeat center center;
 }

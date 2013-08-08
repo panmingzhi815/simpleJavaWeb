@@ -6,10 +6,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 <%@include file="/WEB-INF/jsp/common-include/easyui.jsp"%>
-<link rel="stylesheet" type="text/css" href="<%=basePath %>css/default.css">
+<link rel="stylesheet" type="text/css" href="<%=basePath %>css/default.css" />
 </head>
 <body class="easyui-layout">
 	<div region="north" border="false" style="height: 60px;">
@@ -19,11 +19,11 @@
 		</fieldset>
 	</div>
 	<div region="center" border="false">
-		<table id="dg" title="用户管理" class="easyui-datagrid" fit="true" url="get_users.php" border="true" toolbar="#toolbar" pagination="true" rownumbers="true" singleSelect="true">
+		<table id="dg" idField="id" title="用户管理" class="easyui-datagrid" fit="true" data-options="singleSelect:true,url:'/user/userJSONPage.user'" border="true" toolbar="#toolbar" pagination="true" rownumbers="true" singleSelect="true">
 			<thead>
 				<tr>
-					<th field="firstname" width="150">用户名</th>
-					<th field="lastname" width="150">昵称</th>
+					<th field="loginName" width="150">用户名</th>
+					<th field="nickName" width="150">昵称</th>
 					<th field="phone" width="200">手机</th>
 					<th field="email" width="300">邮件</th>
 				</tr>
@@ -35,19 +35,19 @@
 		</div>
 
 		<div id="dlg" class="easyui-dialog" style="width: 400px; height: 280px; padding: 10px 20px" closed="true" buttons="#dlg-buttons">
-			<div class="formTitle">User Information</div>
+			<div class="formTitle">用户信息</div>
 			<form id="fm" method="post" class="form" novalidate>
 				<div class="formDiv">
-					<label>First Name:</label> <input name="firstname" class="easyui-validatebox" required="true">
+					<label>用户名:</label> <input name="loginName" class="easyui-validatebox" required="true">
 				</div>
-				<div class="fitem">
-					<label>Last Name:</label> <input name="lastname" class="easyui-validatebox" required="true">
+				<div class="formDiv">
+					<label>昵称:</label> <input name="nickName" class="easyui-validatebox" required="true">
 				</div>
-				<div class="fitem">
-					<label>Phone:</label> <input name="phone">
+				<div class="formDiv">
+					<label>手机:</label> <input name="phone">
 				</div>
-				<div class="fitem">
-					<label>Email:</label> <input name="email" class="easyui-validatebox" validType="email">
+				<div class="formDiv">
+					<label>邮件:</label> <input name="email" class="easyui-validatebox" validType="email">
 				</div>
 			</form>
 		</div>
@@ -60,36 +60,32 @@
 </html>
 
 <script type="text/javascript">
-	var url;
 	function newUser() {
 		$('#dlg').dialog('open').dialog('setTitle', 'New User');
 		$('#fm').form('clear');
-		url = 'save_user.php';
 	}
 	function editUser() {
 		var row = $('#dg').datagrid('getSelected');
 		if (row) {
-			$('#dlg').dialog('open').dialog('setTitle', 'Edit User');
+			$('#dlg').dialog('open').dialog('setTitle', '编辑用户');
 			$('#fm').form('load', row);
-			url = 'update_user.php?id=' + row.id;
 		}
 	}
 	function saveUser() {
 		$('#fm').form('submit', {
-			url : url,
+			url : "/user/saveSysUser.user",
 			onSubmit : function() {
 				return $(this).form('validate');
 			},
 			success : function(result) {
-				var result = eval('(' + result + ')');
-				if (result.errorMsg) {
+				if (result) {
+					$('#dlg').dialog('close'); // close the dialog
+					$('#dg').datagrid('reload'); // reload the user data
+				} else {
 					$.messager.show({
 						title : 'Error',
 						msg : result.errorMsg
 					});
-				} else {
-					$('#dlg').dialog('close'); // close the dialog
-					$('#dg').datagrid('reload'); // reload the user data
 				}
 			}
 		});
@@ -97,13 +93,13 @@
 	function destroyUser() {
 		var row = $('#dg').datagrid('getSelected');
 		if (row) {
-			$.messager.confirm('Confirm',
-					'Are you sure you want to destroy this user?', function(r) {
+			$.messager.confirm('确认',
+					'你确定要删除这条 记录吗?', function(r) {
 						if (r) {
-							$.post('destroy_user.php', {
+							$.post('/user/deleteSysUser.user', {
 								id : row.id
 							}, function(result) {
-								if (result.success) {
+								if (result) {
 									$('#dg').datagrid('reload'); // reload the user data
 								} else {
 									$.messager.show({ // show error message
@@ -111,7 +107,7 @@
 										msg : result.errorMsg
 									});
 								}
-							}, 'json');
+							},'json');
 						}
 					});
 		}
