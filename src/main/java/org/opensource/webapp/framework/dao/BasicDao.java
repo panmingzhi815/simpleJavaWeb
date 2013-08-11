@@ -1,7 +1,7 @@
 package org.opensource.webapp.framework.dao;
 
-import org.opensource.webapp.framework.domain.page.PageParam;
-import org.opensource.webapp.framework.domain.page.PageResult;
+import org.opensource.webapp.framework.page.PageParam;
+import org.opensource.webapp.framework.page.PageResult;
 
 public interface BasicDao<T> {
 

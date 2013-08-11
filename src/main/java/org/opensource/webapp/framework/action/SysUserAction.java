@@ -2,10 +2,15 @@ package org.opensource.webapp.framework.action;
 
 import java.util.Map;
 
+import javax.servlet.Servlet;
+import javax.servlet.http.HttpServletRequest;
+
 import org.opensource.webapp.framework.domain.SysUser;
-import org.opensource.webapp.framework.domain.page.EasyUIPageParam;
-import org.opensource.webapp.framework.domain.page.PageParam;
-import org.opensource.webapp.framework.domain.page.PageResult;
+import org.opensource.webapp.framework.page.EasyUIPageParam;
+import org.opensource.webapp.framework.page.PageParam;
+import org.opensource.webapp.framework.page.PageResult;
+import org.opensource.webapp.framework.page.SearchFilter;
+import org.opensource.webapp.framework.page.ServletUtil;
 import org.opensource.webapp.framework.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,8 +37,10 @@ public class SysUserAction {
 	
 	@RequestMapping(value="/userJSONPage.user")
 	@ResponseBody
-	public PageResult<SysUser> getJSONPage(EasyUIPageParam easyUIPageParam){
-		PageResult<SysUser> pageResult = sysUserService.getSysUserList(PageParam.getFromEasyui(easyUIPageParam), new SysUser());
+	public PageResult<SysUser> getJSONPage(HttpServletRequest request){
+		PageParam pageParam = ServletUtil.getPageParam(request);
+		SearchFilter searchFilter = ServletUtil.getSearchFilter(request);
+		PageResult<SysUser> pageResult = sysUserService.getSysUserList(pageParam,searchFilter);
 		return pageResult;
 	}
 	

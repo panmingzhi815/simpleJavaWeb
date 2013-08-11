@@ -15,7 +15,7 @@
 	<div region="north" border="false" style="height: 60px;">
 		<fieldset>
 			<legend>查询</legend>
-			<label>用户名</label> <input /> <label>昵称</label> <input /> <a class="easyui-linkbutton" iconCls="icon-search">查询</a>
+			<label>用户名</label> <input id="search_any_loginName" /> <label>昵称</label> <input id="search_any_nickName" /> <a id="searchBtn" href="#" class="easyui-linkbutton" iconCls="icon-search">查询</a>
 		</fieldset>
 	</div>
 	<div region="center" border="false">
@@ -58,10 +58,17 @@
 	</div>
 </body>
 </html>
-
 <script type="text/javascript">
+	$(function(){
+		$("#searchBtn").click(function(){
+			 $('#dg').datagrid('load',{  
+		        'search_any_loginName': $('#search_any_loginName').val(),  
+	        	'search_any_nickName': $('#search_any_nickName').val()  
+		    });  
+		});
+	})
 	function newUser() {
-		$('#dlg').dialog('open').dialog('setTitle', 'New User');
+		$('#dlg').dialog('open').dialog('setTitle', '新建用户');
 		$('#fm').form('clear');
 	}
 	function editUser() {
@@ -104,7 +111,7 @@
 								} else {
 									$.messager.show({ // show error message
 										title : 'Error',
-										msg : result.errorMsg
+										msg : '删除失败,该记录可能与其他模块己关联'
 									});
 								}
 							},'json');

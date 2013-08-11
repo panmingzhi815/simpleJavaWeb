@@ -17,16 +17,17 @@ import org.json.simple.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.opensource.webapp.framework.domain.SysUser;
-import org.opensource.webapp.framework.domain.page.EasyUIPageParam;
-import org.opensource.webapp.framework.domain.page.PageParam;
-import org.opensource.webapp.framework.domain.page.PageResult;
+import org.opensource.webapp.framework.page.EasyUIPageParam;
+import org.opensource.webapp.framework.page.PageParam;
+import org.opensource.webapp.framework.page.PageResult;
+import org.opensource.webapp.framework.page.SearchFilter;
 
 public class SysUserServiceTest extends AbstractTest{
 	
 	public void cleanup(){
 		PageParam pageParam = new PageParam(0,Integer.MAX_VALUE);
-		SysUser sysUser = new SysUser();
-		PageResult<SysUser> sysUserList = sysUserService.getSysUserList(pageParam, sysUser);
+		SearchFilter filter = new SearchFilter();
+		PageResult<SysUser> sysUserList = sysUserService.getSysUserList(pageParam, filter);
 		List<SysUser> rows = sysUserList.getRows();
 		for (SysUser sysUser2 : rows) {
 			sysUserService.removeSysUser(sysUser2.getId());
@@ -37,14 +38,15 @@ public class SysUserServiceTest extends AbstractTest{
 	public void getSysUserListTest() throws JsonGenerationException, JsonMappingException, IOException{
 		EasyUIPageParam easyuiParam = new EasyUIPageParam(10, 1);
 		PageParam pageParam = PageParam.getFromEasyui(easyuiParam);
+		SearchFilter filter = new SearchFilter();
 		SysUser sysUser = new SysUser("nickName", "loginName", "loginPassword");
 		
-		PageResult<SysUser> sysUserList = sysUserService.getSysUserList(pageParam, sysUser);
+		PageResult<SysUser> sysUserList = sysUserService.getSysUserList(pageParam, filter);
 //		assertEquals(0,sysUserList.getRows().size());
 		
 		boolean saveSysUser = sysUserService.saveSysUser(sysUser);
 		assertEquals(true,saveSysUser);		
-		sysUserList = sysUserService.getSysUserList(pageParam, sysUser);
+		sysUserList = sysUserService.getSysUserList(pageParam, filter);
 //		assertEquals(1,sysUserList.getTotal());
 //		assertEquals(1,sysUserList.getRows().size());
 		
