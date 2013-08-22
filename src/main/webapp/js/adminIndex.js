@@ -6,7 +6,7 @@ var _menus = [{
 				"menuId": "11",
 				"menuName": "用户管理",
 				"icon": "icon-user",
-				"url": "/user/userManager.user"
+				"url": "/admin/userManager"
 			},{
 				"menuId": "12",
 				"menuName": "角色管理",
@@ -16,7 +16,7 @@ var _menus = [{
 				"menuId": "13",
 				"menuName": "菜单管理",
 				"icon": "icon-menu",
-				"url": "http://www.jeasyui.com"
+				"url": "/admin/menuManager"
 			}]
 	}];
 

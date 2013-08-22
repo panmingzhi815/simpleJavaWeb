@@ -3,7 +3,6 @@ package org.opensource.webapp.framework.page;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("unchecked")
 public class SearchFilter {
 
 	public static final String STARTPREFIX = "search";

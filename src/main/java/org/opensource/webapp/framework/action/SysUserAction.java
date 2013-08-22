@@ -1,12 +1,17 @@
 package org.opensource.webapp.framework.action;
 
+import java.io.IOException;
 import java.util.Map;
 
-import javax.servlet.Servlet;
 import javax.servlet.http.HttpServletRequest;
 
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.util.JSONPObject;
+import org.json.simple.JSONValue;
 import org.opensource.webapp.framework.domain.SysUser;
-import org.opensource.webapp.framework.page.EasyUIPageParam;
+import org.opensource.webapp.framework.page.JsonSimpleResult;
 import org.opensource.webapp.framework.page.PageParam;
 import org.opensource.webapp.framework.page.PageResult;
 import org.opensource.webapp.framework.page.SearchFilter;
@@ -18,24 +23,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping(value="/user")
+@RequestMapping(value="/admin")
 public class SysUserAction {
 	
 	@Autowired
 	private SysUserService sysUserService;
 	
-	
-	@RequestMapping(value="/MyJsp")
-	public String sayHello(Map<String, String> map){
-		return "back/menu/MyJsp";	
-	}
-	
-	@RequestMapping(value="/userManager.user")
+	@RequestMapping(value="/userManager")
 	public String userManager(Map<String, String> map){
-		return "back/promession/userManager";	
+		return "admin/userManager";	
 	}
 	
-	@RequestMapping(value="/userJSONPage.user")
+	@RequestMapping(value="/userJSONPage")
 	@ResponseBody
 	public PageResult<SysUser> getJSONPage(HttpServletRequest request){
 		PageParam pageParam = ServletUtil.getPageParam(request);
@@ -44,16 +43,17 @@ public class SysUserAction {
 		return pageResult;
 	}
 	
-	@RequestMapping(value="/saveSysUser.user")
+	@RequestMapping(value="/saveSysUser")
 	@ResponseBody
-	public boolean saveSysUser(SysUser sysUser){
-		return sysUserService.saveSysUser(sysUser);
+	public String saveSysUser(SysUser sysUser) throws JsonGenerationException, JsonMappingException, IOException{
+		boolean saveSysUser = sysUserService.saveSysUser(sysUser);
+		return saveSysUser == true ? "1":"0";
 	}
 	
-	@RequestMapping(value="/deleteSysUser.user")
-	@ResponseBody
-	public boolean deleteSysUser(Long id){
-		return sysUserService.removeSysUser(id);
+	@RequestMapping(value="/deleteSysUser")
+	public String deleteSysUser(Long id){
+		 boolean removeSysUser = sysUserService.removeSysUser(id);
+		 return removeSysUser == true ? "1":"0";
 	}
 
 }

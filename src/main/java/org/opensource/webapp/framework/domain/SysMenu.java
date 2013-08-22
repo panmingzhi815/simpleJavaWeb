@@ -19,6 +19,8 @@ public class SysMenu extends BasicDomain{
 	private String url;
 	private String iconCls;
 	private int ordinal;
+	private String descript;
+	private String state;
 	
 	//直接拥有该菜单的用户
 	@ManyToMany(mappedBy="sysMenuSet",cascade=CascadeType.REMOVE)
@@ -74,6 +76,22 @@ public class SysMenu extends BasicDomain{
 
 	public void setOrdinal(int ordinal) {
 		this.ordinal = ordinal;
+	}
+
+	public String getDescript() {
+		return descript;
+	}
+
+	public void setDescript(String descript) {
+		this.descript = descript;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 
 	public Set<SysUser> getSysUserSet() {

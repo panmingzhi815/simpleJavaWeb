@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.opensource</groupId>
-	<artifactId>webapp</artifactId>
-	<packaging>war</packaging>
+	<artifactId>SimpleJavaWeb</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<name>webapp Maven project</name>
+	<description>simple java web application</description>
+	<packaging>war</packaging>
 
 	<properties>
 		<spring.version>3.2.2.RELEASE</spring.version>
@@ -49,12 +49,15 @@
 			<version>1.1</version>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-jpa</artifactId>
-			<version>1.3.2.RELEASE</version>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.4</version>
 		</dependency>
-
-
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.1</version>
+		</dependency>
 		<!-- 数据库驱动 -->
 		<dependency>
 			<groupId>net.sourceforge.jtds</groupId>
@@ -74,32 +77,24 @@
 			<version>10.10.1.1</version>
 		</dependency>
 
-		<!-- struts2 -->
-		<dependency>
-			<groupId>org.apache.struts</groupId>
-			<artifactId>struts2-core</artifactId>
-			<version>${struts2.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.struts</groupId>
-			<artifactId>struts2-spring-plugin</artifactId>
-			<version>${struts2.version}</version>
-		</dependency>
-
 		<!-- jpa2 -->
 		<dependency>
 			<groupId>org.hibernate.java-persistence</groupId>
 			<artifactId>jpa-api</artifactId>
 			<version>${jpa.version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>1.3.2.RELEASE</version>
+		</dependency>
+		
 		<!-- jpa criteria implements like by hibernate -->
 		<dependency>
 			<groupId>org.criteria4jpa</groupId>
 			<artifactId>criteria4jpa</artifactId>
 			<version>0.2</version>
 		</dependency>
-
 
 		<!-- hibernate4 -->
 		<dependency>
@@ -117,6 +112,7 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
+		
 		<!-- spring3 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -174,16 +170,9 @@
 			<version>${spring.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.9.4</version>
-		</dependency>
-
 	</dependencies>
 
 	<build>
-		<finalName>webapp</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -201,7 +190,7 @@
 				<configuration>
 					<scanIntervalSeconds>1</scanIntervalSeconds>
 				</configuration>
-			</plugin>           
+			</plugin>
 
 		</plugins>
 	</build>

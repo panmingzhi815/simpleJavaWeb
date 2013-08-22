@@ -19,6 +19,7 @@ import javax.persistence.TemporalType;
 
 import org.opensource.webapp.framework.domain.enums.SysUserState;
 
+
 @Entity(name = "SysUser")
 public class SysUser extends BasicDomain {
 

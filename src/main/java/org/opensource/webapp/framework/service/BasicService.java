@@ -54,6 +54,7 @@ public class BasicService<T> {
 		return pageResult;
 	}
 
+	@SuppressWarnings({"unchecked","rawtypes"})
 	public Specification<T> buildSpecification(final SearchFilter searchFilter) {
 		return new Specification<T>() {
 			@Override

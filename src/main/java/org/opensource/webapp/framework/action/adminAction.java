@@ -6,16 +6,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping(value="/admin")
 public class adminAction {
 	
 	@RequestMapping(value="/adminIndex")
 	public String adminIndex(Map<String, String> map){
-		return "back/adminIndex";	
+		return "admin/adminIndex";	
 	}
 	
 	@RequestMapping(value="/adminLogin")
 	public String adminLogin(Map<String, String> map){
-		return "back/adminLogin";	
+		return "admin/adminLogin";	
 	}
 
 }

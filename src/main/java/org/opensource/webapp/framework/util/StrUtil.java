@@ -8,7 +8,7 @@ public class StrUtil {
 		return s != null && s.length() > 0; 
 	}
 	
-	public static boolean isNotEmpty(Collection c){
+	public static boolean isNotEmpty(Collection<?> c){
 		return c != null && !c.isEmpty();
 	}
 
