@@ -1,11 +1,14 @@
 package org.opensource.webapp.framework.util;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.LazyInitializationException;
 import org.opensource.webapp.framework.domain.BasicDomain;
 
 /**
@@ -54,21 +57,20 @@ public class MapOutUtil {
 				returnType = getMethod.getReturnType();
 				setMethod = o.getClass().getMethod(setMethodName, returnType);
 				Object obj = getMethod.invoke(o, null);
-				if(returnType.isMemberClass()){
-					mapOutObj(obj);
-				}
-				if(obj instanceof List){
-					mapOutList((List)obj);
-				}
-				if(obj instanceof Set){
-					mapOutList(new ArrayList((Set)obj));
-				}
-				obj.toString();
+                obj.toString();
+                if(returnType.getSuperclass() == BasicDomain.class){
+                    obj = mapOutObj(obj);
+                }
+                if(obj instanceof List){
+                    mapOutList((List)obj);
+                }
+                if(obj instanceof Set){
+                    mapOutSet((Set) obj);
+                }
 				setMethod.invoke(newInstance, obj);
 			} catch (Exception e) {
-				
 			}
-		}
+        }
 		return newInstance;
 	}
 	
@@ -79,4 +81,13 @@ public class MapOutUtil {
 		}
 		return returnList;
 	}
+
+    public static <T> Set<T> mapOutSet(Set<T> set){
+        Set<T> returnSet = new HashSet<T>();
+        for (T t: set) {
+            returnSet.add(mapOutObj(t));
+        }
+        return returnSet;
+    }
+
 } 

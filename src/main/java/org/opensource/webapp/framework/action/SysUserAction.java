@@ -1,17 +1,8 @@
 package org.opensource.webapp.framework.action;
 
-import java.io.IOException;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.util.JSONPObject;
-import org.json.simple.JSONValue;
 import org.opensource.webapp.framework.domain.SysUser;
-import org.opensource.webapp.framework.page.JsonSimpleResult;
 import org.opensource.webapp.framework.page.PageParam;
 import org.opensource.webapp.framework.page.PageResult;
 import org.opensource.webapp.framework.page.SearchFilter;
@@ -21,6 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value="/admin")
@@ -45,15 +40,14 @@ public class SysUserAction {
 	
 	@RequestMapping(value="/saveSysUser")
 	@ResponseBody
-	public String saveSysUser(SysUser sysUser) throws JsonGenerationException, JsonMappingException, IOException{
-		boolean saveSysUser = sysUserService.saveSysUser(sysUser);
-		return saveSysUser == true ? "1":"0";
+	public Long saveSysUser(SysUser sysUser){
+		return sysUserService.saveSysUser(sysUser);
 	}
-	
+
 	@RequestMapping(value="/deleteSysUser")
-	public String deleteSysUser(Long id){
-		 boolean removeSysUser = sysUserService.removeSysUser(id);
-		 return removeSysUser == true ? "1":"0";
+    @ResponseBody
+	public boolean deleteSysUser(Long id){
+		 return  sysUserService.removeSysUser(id);
 	}
 
 }

@@ -1,26 +1,19 @@
 package org.opensource.webapp.framework.domain;
 
+import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity(name="SysMenu")
 public class SysMenu extends BasicDomain{
 
-	@ManyToOne
-	@JoinColumn(name="parent")
-	private SysMenu parent;
-	private String levelCode;
 	private String text;
 	private String url;
 	private String iconCls;
 	private int ordinal;
 	private String descript;
-	private String state;
+	private String state="open";
 	
 	//直接拥有该菜单的用户
 	@ManyToMany(mappedBy="sysMenuSet",cascade=CascadeType.REMOVE)
@@ -30,6 +23,16 @@ public class SysMenu extends BasicDomain{
 	@ManyToMany(mappedBy="sysMenuSet",cascade=CascadeType.REMOVE)
 	private Set<SysRole> sysRoleSet;
 
+    @ManyToOne
+    @JoinColumn(name="parent",nullable = true)
+    private SysMenu parent;
+    //只映射id,懒加载依然起效
+    @Column(name = "parent",insertable = false,updatable = false)
+    private Long parentId;
+
+    @OneToMany(cascade = CascadeType.REMOVE,mappedBy = "parent")
+    private List<SysMenu> sysMenuList;
+
 	public SysMenu getParent() {
 		return parent;
 	}
@@ -38,15 +41,15 @@ public class SysMenu extends BasicDomain{
 		this.parent = parent;
 	}
 
-	public String getLevelCode() {
-		return levelCode;
-	}
+    public Long getParentId() {
+        return parentId;
+    }
 
-	public void setLevelCode(String levelCode) {
-		this.levelCode = levelCode;
-	}
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
 
-	public String getText() {
+    public String getText() {
 		return text;
 	}
 

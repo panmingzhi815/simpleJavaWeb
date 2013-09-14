@@ -37,6 +37,7 @@
 		<div id="dlg" class="easyui-dialog" style="width: 400px; height: 280px; padding: 10px 20px" closed="true" buttons="#dlg-buttons">
 			<div class="formTitle">用户信息</div>
 			<form id="fm" method="post" class="form">
+                <input type="hidden" id="id" name="id">
 				<div class="formDiv">
 					<label>用户名:</label> <input name="loginName" class="easyui-validatebox" required="true">
 				</div>
@@ -85,7 +86,7 @@
 				return $(this).form('validate');
 			},
 			success : function(result) {
-				if (result == 1) {
+				if (result != 0) {
 					$('#dlg').dialog('close');
 					$('#dg').datagrid('reload');
 				} else {
@@ -106,7 +107,7 @@
 							$.post('/admin/deleteSysUser', {
 								id : row.id
 							}, function(result) {
-								if (result == "1") {
+								if (result) {
 									$('#dg').datagrid('reload'); 
 								} else {
 									$.messager.show({

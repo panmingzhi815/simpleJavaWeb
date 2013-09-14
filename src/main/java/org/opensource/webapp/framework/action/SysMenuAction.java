@@ -1,11 +1,15 @@
 package org.opensource.webapp.framework.action;
 
-import java.util.Map;
-
+import org.opensource.webapp.framework.domain.SysMenu;
 import org.opensource.webapp.framework.service.SysMenuService;
+import org.opensource.webapp.framework.util.MapOutUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value="/admin")
@@ -18,5 +22,23 @@ public class SysMenuAction {
 	public String menuManager(Map<String, String> map){
 		return "admin/menuManager";	
 	}
+
+    @RequestMapping(value="/saveSysMenu")
+    @ResponseBody
+    public Long saveSysMenu(SysMenu sysMenu){
+        return sysMenuService.saveSysMenu(sysMenu);
+    }
+
+    @RequestMapping(value="/deleteSysMenu")
+    @ResponseBody
+    public boolean deleteSysMenu(Long id){
+        return sysMenuService.removeSysMenu(id);
+    }
+
+    @RequestMapping(value="/getSysMenuList")
+    @ResponseBody
+    public List<SysMenu> getSysMenuList(Long id){
+        return MapOutUtil.mapOutList(sysMenuService.getChildrenSysMenuById(id));
+    }
 	
 }

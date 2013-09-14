@@ -6,12 +6,13 @@ import org.opensource.webapp.framework.domain.SysMenu;
 
 public interface SysMenuService {
 	
-	public SysMenu saveSysMenu(SysMenu sysMenu);
-	
-	public void removeSysMenu(SysMenu sysMenu);
-	
+	public Long saveSysMenu(SysMenu sysMenu);
+
+    public boolean removeSysMenu(Long id);
+
 	public SysMenu getSysMenuById(Long id);
-	
+
 	public List<SysMenu> getAllSysMenu();
-	
+
+    public List<SysMenu> getChildrenSysMenuById(Long id);
 }

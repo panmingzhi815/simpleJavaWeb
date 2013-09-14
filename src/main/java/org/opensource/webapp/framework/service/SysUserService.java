@@ -8,7 +8,7 @@ import org.opensource.webapp.framework.page.SearchFilter;
 
 public interface SysUserService {
 
-	public boolean saveSysUser(SysUser sysUser);
+	public Long saveSysUser(SysUser sysUser);
 	
 	public boolean removeSysUser(Long id);
 	

@@ -23,13 +23,8 @@ public class SysUserServiceImpl extends BasicService<SysUser> implements
 
 	@Override
 	@Transactional
-	public boolean saveSysUser(SysUser sysUser) {
-		try {
-			sysUserDao.save(sysUser).getId();
-			return true;
-		} catch (Exception e) {
-			return false;
-		}
+	public Long saveSysUser(SysUser sysUser) {
+        return sysUserDao.save(sysUser).getId();
 	}
 
 	@Override
