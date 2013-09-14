@@ -1,7 +1,5 @@
 package org.opensource.webapp.framework.action;
 
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
 import org.opensource.webapp.framework.domain.SysUser;
 import org.opensource.webapp.framework.page.PageParam;
 import org.opensource.webapp.framework.page.PageResult;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.Map;
 
 @Controller

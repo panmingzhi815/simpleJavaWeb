@@ -1,6 +1,6 @@
 * {
 	font-size: 12px;
-	font-family: Tahoma, Verdana, Î¢ÈíÑÅºÚ, ĞÂËÎÌå
+	font-family: Tahoma, Verdana;
 }
 
 fieldset {
@@ -55,6 +55,15 @@ fieldset input {
 .formDiv label {
 	display: inline-block;
 	width: 80px;
+    vertical-align: top;
+}
+
+.formDiv input {
+    width: 150px;
+}
+
+.formDiv textarea {
+    width: 150px;
 }
 
 .icon-menu {

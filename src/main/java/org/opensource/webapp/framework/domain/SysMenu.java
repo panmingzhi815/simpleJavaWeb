@@ -6,7 +6,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity(name="SysMenu")
-public class SysMenu extends BasicDomain{
+public class SysMenu extends BasicDomain implements Comparable<SysMenu>{
 
 	private String text;
 	private String url;
@@ -112,6 +112,9 @@ public class SysMenu extends BasicDomain{
 	public void setSysRoleSet(Set<SysRole> sysRoleSet) {
 		this.sysRoleSet = sysRoleSet;
 	}
-	
-	
+
+    @Override
+    public int compareTo(SysMenu o) {
+        return this.getOrdinal() - o.getOrdinal();
+    }
 }

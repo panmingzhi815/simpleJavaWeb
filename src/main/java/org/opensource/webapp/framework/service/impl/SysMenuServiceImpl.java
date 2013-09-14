@@ -1,5 +1,7 @@
 package org.opensource.webapp.framework.service.impl;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.opensource.webapp.framework.dao.SysMenuDao;
@@ -71,9 +73,16 @@ public class SysMenuServiceImpl implements SysMenuService {
 
     @Override
     public List<SysMenu> getChildrenSysMenuById(Long id) {
+        List<SysMenu> resultList;
         if(id == null){
-            return sysMenuDao.findByParentIsNull();
+            resultList = sysMenuDao.findByParentIsNull();
+        }else{
+            resultList = sysMenuDao.findByParent(sysMenuDao.findOne(id));
         }
-        return sysMenuDao.findByParent(sysMenuDao.findOne(id));
+        //有菜单，则对菜单进行排序
+        if(resultList != null){
+            Collections.sort(resultList);
+        }
+        return resultList;
     }
 }

@@ -11,7 +11,7 @@ var _menus = [{
 				"menuId": "12",
 				"menuName": "角色管理",
 				"icon": "icon-role",
-				"url": "http://www.jeasyui.com"
+				"url": "/admin/roleManager"
 			},{
 				"menuId": "13",
 				"menuName": "菜单管理",

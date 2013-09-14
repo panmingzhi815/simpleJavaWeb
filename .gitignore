@@ -4,5 +4,4 @@
 .settings/
 target/
 log/
-derbyDB/
 *.iml
