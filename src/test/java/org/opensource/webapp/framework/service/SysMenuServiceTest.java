@@ -22,7 +22,7 @@ public class SysMenuServiceTest extends AbstractTest {
     public void cleanUp(){
         List<SysMenu> allSysMenu = sysMenuService.getChildrenSysMenuById(null);
         for (SysMenu sm : allSysMenu){
-            sysMenuService.removeSysMenu(sm);
+            sysMenuService.removeSysMenu(sm.getId());
         }
     }
     //测试前后清空所有数据

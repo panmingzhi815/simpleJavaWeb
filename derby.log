@@ -1,11 +1,11 @@
 ----------------------------------------------------------------
-Sun Sep 15 03:04:52 CST 2013:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-0141-1ddc-8291-0000016641c8 
-on database directory G:\GitHub\simpleJavaWeb\derbyDB with class loader WebAppClassLoader=webapp@95a6ed 
+Wed Sep 25 22:20:56 CST 2013:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-0141-557e-80a3-000000dca9a8 
+on database directory D:\github\simpleJavaWeb\derbyDB with class loader WebAppClassLoader=webapp@f03879 
 Loaded from file:/C:/Documents%20and%20Settings/Administrator/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_25-b17
-user.dir=G:\GitHub\simpleJavaWeb
+java.runtime.version=1.7.0_40-b43
+user.dir=D:\github\simpleJavaWeb
 os.name=Windows XP
 os.arch=x86
 os.version=5.1
