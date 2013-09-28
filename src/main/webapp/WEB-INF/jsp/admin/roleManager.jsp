@@ -12,13 +12,10 @@
 <link rel="stylesheet" type="text/css" href="<%=basePath %>css/default.css" />
 </head>
 <body class="easyui-layout">
-	<div region="north" border="false" style="height: 60px;">
-		<fieldset>
-			<legend>查询</legend>
+	<div region="north" border="false" style="padding: 10px 10px 10px 10px">
 			<label>角色名称</label> <input id="search_any_name" /> <a id="searchBtn" href="#" class="easyui-linkbutton" iconCls="icon-search">查询</a>
-		</fieldset>
 	</div>
-	<div region="center" border="false">
+	<div region="center" border="false" style="padding: 1px 1px 1px 1px">
 		<table id="dg" idField="id" title="角色管理" class="easyui-datagrid" fit="true" data-options="singleSelect:true,url:'/admin/roleJSONPage'" border="true" toolbar="#toolbar" pagination="true" rownumbers="true" singleSelect="true">
 			<thead>
 				<tr>

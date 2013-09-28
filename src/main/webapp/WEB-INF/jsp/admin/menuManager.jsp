@@ -16,7 +16,7 @@
 	href="<%=basePath%>css/default.css" />
 </head>
 <body class="easyui-layout">
-	<div region="center" border="false">
+	<div region="center" border="false" style="padding: 1px 1px 1px 1px">
 		<table id="tg" idField="id" treeField="display" title="菜单管理" class="easyui-treegrid"
 			fit="true" border="true" toolbar="#toolbar" singleSelect="true">
 			<thead>
