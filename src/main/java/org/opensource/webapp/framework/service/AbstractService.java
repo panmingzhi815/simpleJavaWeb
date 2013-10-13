@@ -1,6 +1,5 @@
 package org.opensource.webapp.framework.service;
 
-import org.opensource.webapp.framework.domain.SysRole;
 import org.opensource.webapp.framework.page.PageParam;
 import org.opensource.webapp.framework.page.PageResult;
 import org.opensource.webapp.framework.page.SearchFilter;

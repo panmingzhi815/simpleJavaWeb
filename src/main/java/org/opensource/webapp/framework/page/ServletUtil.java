@@ -19,6 +19,7 @@ public class ServletUtil {
 		return new PageParam(0, 10);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static SearchFilter getSearchFilter(HttpServletRequest request){
 		SearchFilter searchFilter = new SearchFilter();
 		Enumeration<String> enumeration = request.getParameterNames();

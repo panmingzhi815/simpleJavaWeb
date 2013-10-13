@@ -3,5 +3,7 @@
 .idea/
 .settings/
 target/
+derbyDB/
 log/
 *.iml
+*.log
