@@ -27,8 +27,10 @@
 			</thead>
 		</table>
 		<div id="toolbar">
-			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">新建</a> <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove"
-				plain="true" onclick="destroyUser()">删除</a> <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">修改</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">新建</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">删除</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">修改</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="assginRole()">分配角色</a>
 		</div>
 
 		<div id="dlg" class="easyui-dialog" style="width: 400px; height: 280px; padding: 10px 20px" closed="true" buttons="#dlg-buttons">
@@ -50,9 +52,47 @@
 			</form>
 		</div>
 		<div id="dlg-buttons">
-			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUser()">Save</a> <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel"
-				onclick="javascript:$('#dlg').dialog('close')">Cancel</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUser()">保存</a> <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel"
+				onclick="javascript:$('#dlg').dialog('close')">取消</a>
 		</div>
+        <div id="assignRoleWin" class="easyui-window" title="给用户分配角色" style="" data-options="iconCls:'icon-save',modal:true,maximizable:false,minimizable:false,resizable:false,closed:true">
+            <div id="cc" class="easyui-layout" style="height:400px;width: 650px;padding: 1px 1px 1px 1px">
+                <div data-options="region:'east'" border="false" style="width:155px;padding: 1px 1px 1px 1px">
+                    <table id="dg1" idField="id" title="己分配角色"  border="true" fit="true" class="easyui-datagrid" data-options="singleSelect:true,url:'/admin/roleJSONPage'" border="true">
+                        <thead>
+                        <tr>
+                            <th field="name" width="150">角色名称</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div data-options="region:'west'"  border="false" style="width:450px;padding: 1px 1px 1px 1px">
+                    <table id="dg2" idField="id" title="角色列表"  border="true" class="easyui-datagrid" fit="true" data-options="singleSelect:true,url:'/admin/roleJSONPage',toolbar:'#roleSearchTool'" border="true" pagination="true" rownumbers="false" singleSelect="true">
+                        <thead>
+                        <tr>
+                            <th field="name" width="150">角色名称</th>
+                            <th field="note" width="250">角色说明</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div data-options="region:'center'" border="false" style="text-align: center;">
+                    <table style="width: 100%;height: 100%">
+                        <tr>
+                            <td valign="middle">
+                                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-right" plain="true" onclick="newUser()"></a>
+                                <br/>
+                                <br/>
+                                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-left" plain="true" onclick="destroyUser()"></a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="roleSearchTool" style="padding: 5px 5px 5px 5px">
+                    <label>角色名称</label> <input id="search_any_name" /> <a id="roleSearchBtn" href="#" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+                </div>
+            </div>
+        </div>
 	</div>
 </body>
 </html>
@@ -65,10 +105,12 @@
 		    });  
 		});
 	})
+    //新建一个用户
 	function newUser() {
 		$('#dlg').dialog('open').dialog('setTitle', '新建用户');
 		$('#fm').form('clear');
 	}
+    //编辑一个用户
 	function editUser() {
 		var row = $('#dg').datagrid('getSelected');
 		if (row) {
@@ -76,6 +118,7 @@
 			$('#fm').form('load', row);
 		}
 	}
+    //保存一个用户
 	function saveUser() {
 		$('#fm').form('submit', {
 			url : "/admin/saveSysUser",
@@ -95,6 +138,7 @@
 			}
 		});
 	}
+    //删除一个用户
 	function destroyUser() {
 		var row = $('#dg').datagrid('getSelected');
 		if (row) {
@@ -115,6 +159,18 @@
 							},'json');
 						}
 					});
-		}
+		}else{
+            $.messager.alert('提示', '请先在列表中选择一个用户',"info");
+        }
 	}
+
+    //分配角色
+    function assginRole(){
+        var row = $('#dg').datagrid('getSelected');
+        if(row){
+            $('#assignRoleWin').window('open');
+        }else{
+            $.messager.alert('提示', '请先在列表中选择一个用户',"info");
+        }
+    }
 </script>

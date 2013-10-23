@@ -81,3 +81,19 @@ fieldset input {
 .icon-promession {
 	background: url('../images/icon/promession.png') no-repeat center center;
 }
+
+.icon-left {
+    background: url('../images/icon/left.png') no-repeat center center;
+}
+
+.icon-right {
+    background: url('../images/icon/right.png') no-repeat center center;
+}
+
+.icon-up {
+    background: url('../images/icon/up.png') no-repeat center center;
+}
+
+.icon-down {
+    background: url('../images/icon/down.png') no-repeat center center;
+}
