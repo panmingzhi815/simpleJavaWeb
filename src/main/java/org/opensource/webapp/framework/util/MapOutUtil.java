@@ -3,10 +3,7 @@ package org.opensource.webapp.framework.util;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import org.hibernate.LazyInitializationException;
 import org.opensource.webapp.framework.domain.BasicDomain;
@@ -26,7 +23,7 @@ public class MapOutUtil {
 		
 		T newInstance = null;
 		try {
-			newInstance = (T)o.getClass().getConstructor(null).newInstance();
+			newInstance = (T)o.getClass().getConstructor().newInstance();
 		} catch (Exception e) {
 			return null;
 		}
@@ -37,9 +34,9 @@ public class MapOutUtil {
 		//处理继承类中的值
 		if(o.getClass().getSuperclass() == BasicDomain.class){
 			try {
-				Method method = BasicDomain.class.getMethod("getId", null);
+				Method method = BasicDomain.class.getMethod("getId");
 				Method method2 = BasicDomain.class.getMethod("setId", Long.class);
-				method2.invoke(newInstance, method.invoke(o, null));
+				method2.invoke(newInstance, method.invoke(o));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -53,10 +50,10 @@ public class MapOutUtil {
 			Method getMethod = null;
 			Method setMethod = null;
 			try {
-				getMethod = o.getClass().getMethod(getMethodName, null);
+				getMethod = o.getClass().getMethod(getMethodName);
 				returnType = getMethod.getReturnType();
 				setMethod = o.getClass().getMethod(setMethodName, returnType);
-				Object obj = getMethod.invoke(o, null);
+				Object obj = getMethod.invoke(o);
                 obj.toString();
                 if(returnType.getSuperclass() == BasicDomain.class){
                     obj = mapOutObj(obj);
@@ -74,7 +71,7 @@ public class MapOutUtil {
 		return newInstance;
 	}
 	
-	public static <T> List<T> mapOutList(List<T> list){
+	public static <T> List<T> mapOutList(Collection<T> list){
 		List<T> returnList = new ArrayList<T>();
 		for (T t: list) {
 			returnList.add(mapOutObj(t));

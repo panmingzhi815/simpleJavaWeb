@@ -6,12 +6,12 @@ var _menus = [{
 				"menuId": "11",
 				"menuName": "用户管理",
 				"icon": "icon-user",
-				"url": "/admin/userManager"
+				"url": "/admin/user/userManager"
 			},{
 				"menuId": "12",
 				"menuName": "角色管理",
 				"icon": "icon-role",
-				"url": "/admin/roleManager"
+				"url": "/admin/role/roleManager"
 			},{
 				"menuId": "13",
 				"menuName": "菜单管理",

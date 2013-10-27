@@ -5,24 +5,30 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+/**
+ * Created with IntelliJ IDEA.
+ * User: panmingzhi815
+ * Date: 13-07-26
+ * Time: 下午5:33
+ * 系统菜单对象
+ */
 @Entity(name="SysMenu")
 public class SysMenu extends BasicDomain implements Comparable<SysMenu>{
 
+    //菜单显示名称
 	private String text;
+    //菜单连接地址
 	private String url;
+    //菜单图标对应的css名称
 	private String iconCls;
+    //菜单顺序
 	private int ordinal;
+    //菜单描述
 	private String descript;
+    //菜单默认打开状态
 	private String state="open";
-	
-	//直接拥有该菜单的用户
-	@ManyToMany(mappedBy="sysMenuSet",cascade=CascadeType.REMOVE)
-	private Set<SysUser> sysUserSet;
-	
-	//直接拥有该菜单的角色
-	@ManyToMany(mappedBy="sysMenuSet",cascade=CascadeType.REMOVE)
-	private Set<SysRole> sysRoleSet;
 
+    //父菜单
     @ManyToOne
     @JoinColumn(name="parent",nullable = true)
     private SysMenu parent;
@@ -30,16 +36,73 @@ public class SysMenu extends BasicDomain implements Comparable<SysMenu>{
     @Column(name = "parent",insertable = false,updatable = false)
     private Long parentId;
 
+    //子菜单
     @OneToMany(cascade = CascadeType.REMOVE,mappedBy = "parent")
     private List<SysMenu> sysMenuList;
 
-	public SysMenu getParent() {
-		return parent;
-	}
+    //所有控件级别的功能选项
+    @OneToMany(cascade = CascadeType.REMOVE)
+    private Set<SysMenuController> sysMenuControllerSet;
 
-	public void setParent(SysMenu parent) {
-		this.parent = parent;
-	}
+    //所有数据级别功能的表达式选项
+    @OneToMany(cascade = CascadeType.REMOVE)
+    private Set<SysMenuExpression> sysMenuExpressionSet;
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getIconCls() {
+        return iconCls;
+    }
+
+    public void setIconCls(String iconCls) {
+        this.iconCls = iconCls;
+    }
+
+    public int getOrdinal() {
+        return ordinal;
+    }
+
+    public void setOrdinal(int ordinal) {
+        this.ordinal = ordinal;
+    }
+
+    public String getDescript() {
+        return descript;
+    }
+
+    public void setDescript(String descript) {
+        this.descript = descript;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public SysMenu getParent() {
+        return parent;
+    }
+
+    public void setParent(SysMenu parent) {
+        this.parent = parent;
+    }
 
     public Long getParentId() {
         return parentId;
@@ -49,69 +112,29 @@ public class SysMenu extends BasicDomain implements Comparable<SysMenu>{
         this.parentId = parentId;
     }
 
-    public String getText() {
-		return text;
-	}
+    public List<SysMenu> getSysMenuList() {
+        return sysMenuList;
+    }
 
-	public void setText(String text) {
-		this.text = text;
-	}
+    public void setSysMenuList(List<SysMenu> sysMenuList) {
+        this.sysMenuList = sysMenuList;
+    }
 
-	public String getUrl() {
-		return url;
-	}
+    public Set<SysMenuController> getSysMenuControllerSet() {
+        return sysMenuControllerSet;
+    }
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    public void setSysMenuControllerSet(Set<SysMenuController> sysMenuControllerSet) {
+        this.sysMenuControllerSet = sysMenuControllerSet;
+    }
 
-	public String getIconCls() {
-		return iconCls;
-	}
+    public Set<SysMenuExpression> getSysMenuExpressionSet() {
+        return sysMenuExpressionSet;
+    }
 
-	public void setIconCls(String iconCls) {
-		this.iconCls = iconCls;
-	}
-
-	public int getOrdinal() {
-		return ordinal;
-	}
-
-	public void setOrdinal(int ordinal) {
-		this.ordinal = ordinal;
-	}
-
-	public String getDescript() {
-		return descript;
-	}
-
-	public void setDescript(String descript) {
-		this.descript = descript;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public Set<SysUser> getSysUserSet() {
-		return sysUserSet;
-	}
-
-	public void setSysUserSet(Set<SysUser> sysUserSet) {
-		this.sysUserSet = sysUserSet;
-	}
-
-	public Set<SysRole> getSysRoleSet() {
-		return sysRoleSet;
-	}
-
-	public void setSysRoleSet(Set<SysRole> sysRoleSet) {
-		this.sysRoleSet = sysRoleSet;
-	}
+    public void setSysMenuExpressionSet(Set<SysMenuExpression> sysMenuExpressionSet) {
+        this.sysMenuExpressionSet = sysMenuExpressionSet;
+    }
 
     @Override
     public int compareTo(SysMenu o) {

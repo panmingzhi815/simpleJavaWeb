@@ -10,6 +10,13 @@ import javax.persistence.TemporalType;
 
 import org.opensource.webapp.framework.domain.enums.EmailSendStateEnum;
 
+/**
+ * Created with IntelliJ IDEA.
+ * User: panmingzhi815
+ * Date: 13-10-26
+ * Time: 下午5:33
+ * 系统邮件对象
+ */
 @Entity
 public class SysEmail extends BasicDomain{
 	//邮件接收者

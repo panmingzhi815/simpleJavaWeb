@@ -19,7 +19,13 @@ import javax.persistence.TemporalType;
 
 import org.opensource.webapp.framework.domain.enums.SysUserState;
 
-
+/**
+ * Created with IntelliJ IDEA.
+ * User: panmingzhi815
+ * Date: 13-08-26
+ * Time: 下午5:33
+ * 系统用户
+ */
 @Entity(name = "SysUser")
 public class SysUser extends BasicDomain {
 
@@ -40,17 +46,18 @@ public class SysUser extends BasicDomain {
 	
 	@Enumerated(EnumType.STRING)
 	private SysUserState sysUserState;
+
 	//用户所拥有的角色
 	@ManyToMany(cascade=CascadeType.REMOVE)
 	@JoinTable(name="SysUser_SysRole",joinColumns={@JoinColumn(name="SysUserId",referencedColumnName="id")},
 	inverseJoinColumns={@JoinColumn(name="SysRoleId",referencedColumnName="id")})
 	private Set<SysRole> sysRoleSet = new HashSet<SysRole>();
 	
-	//用户直接拥有的菜单
+	//用户直接拥有的权限
 	@ManyToMany(cascade=CascadeType.REMOVE)
-	@JoinTable(name="SysUser_SysMenu",joinColumns={@JoinColumn(name="SysUserId",referencedColumnName="id")},
-	inverseJoinColumns={@JoinColumn(name="SysMenuId",referencedColumnName="id")})
-	private Set<SysMenu> sysMenuSet = new HashSet<SysMenu>();
+	@JoinTable(name="SysUser_SysPrivilege",joinColumns={@JoinColumn(name="SysUserId",referencedColumnName="id")},
+	inverseJoinColumns={@JoinColumn(name="SysPrivilegeId",referencedColumnName="id")})
+	private Set<SysPrivilege> SysPrivilegeSet = new HashSet<SysPrivilege>();
 
 	public SysUser() {
 	}
@@ -61,102 +68,103 @@ public class SysUser extends BasicDomain {
 		this.loginPassword = loginPassword;
 	}
 
-	public String getLoginName() {
-		return loginName;
-	}
+    //内部简单业务方法 start
+    public void addRole(SysRole sysRole) {
+        this.sysRoleSet.add(sysRole);
+    }
 
-	public void setLoginName(String loginName) {
-		this.loginName = loginName;
-	}
+    public void removeRole(SysRole sysRole) {
+        this.sysRoleSet.remove(sysRole);
+    }
+    //内部简单业务方法 end
 
-	public String getLoginPassword() {
-		return loginPassword;
-	}
+    public String getLoginName() {
+        return loginName;
+    }
 
-	public void setLoginPassword(String loginPassword) {
-		this.loginPassword = loginPassword;
-	}
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
+    }
 
-	public String getNickName() {
-		return nickName;
-	}
+    public String getLoginPassword() {
+        return loginPassword;
+    }
 
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
-	}
+    public void setLoginPassword(String loginPassword) {
+        this.loginPassword = loginPassword;
+    }
 
-	public String getPhone() {
-		return phone;
-	}
+    public String getNickName() {
+        return nickName;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getPhone() {
+        return phone;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	public byte[] getHeadImage() {
-		return headImage;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setHeadImage(byte[] headImage) {
-		this.headImage = headImage;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public Date getCreateTime() {
-		return createTime;
-	}
+    public byte[] getHeadImage() {
+        return headImage;
+    }
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
+    public void setHeadImage(byte[] headImage) {
+        this.headImage = headImage;
+    }
 
-	public Date getLastLoginTime() {
-		return lastLoginTime;
-	}
+    public Date getCreateTime() {
+        return createTime;
+    }
 
-	public void setLastLoginTime(Date lastLoginTime) {
-		this.lastLoginTime = lastLoginTime;
-	}
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
-	public SysUserState getSysUserState() {
-		return sysUserState;
-	}
+    public Date getLastLoginTime() {
+        return lastLoginTime;
+    }
 
-	public void setSysUserState(SysUserState sysUserState) {
-		this.sysUserState = sysUserState;
-	}
+    public void setLastLoginTime(Date lastLoginTime) {
+        this.lastLoginTime = lastLoginTime;
+    }
 
-	public Set<SysRole> getSysRoleSet() {
-		return sysRoleSet;
-	}
+    public SysUserState getSysUserState() {
+        return sysUserState;
+    }
 
-	public void setSysRoleSet(Set<SysRole> sysRoleSet) {
-		this.sysRoleSet = sysRoleSet;
-	}
+    public void setSysUserState(SysUserState sysUserState) {
+        this.sysUserState = sysUserState;
+    }
 
-	public Set<SysMenu> getSysMenuSet() {
-		return sysMenuSet;
-	}
+    public Set<SysRole> getSysRoleSet() {
+        return sysRoleSet;
+    }
 
-	public void setSysMenuSet(Set<SysMenu> sysMenuSet) {
-		this.sysMenuSet = sysMenuSet;
-	}
+    public void setSysRoleSet(Set<SysRole> sysRoleSet) {
+        this.sysRoleSet = sysRoleSet;
+    }
 
-	public Set<SysMenu> getAllSysMenuSet(){
-		Set<SysMenu> sysMenuSet = new HashSet<SysMenu>();
-		sysMenuSet.addAll(getSysMenuSet());	
-		for (SysRole sysRole : getSysRoleSet()) {
-			sysMenuSet.addAll(sysRole.getSysMenuSet());
-		}
-		return sysMenuSet;
-	}
+    public Set<SysPrivilege> getSysPrivilegeSet() {
+        return SysPrivilegeSet;
+    }
+
+    public void setSysPrivilegeSet(Set<SysPrivilege> sysPrivilegeSet) {
+        SysPrivilegeSet = sysPrivilegeSet;
+    }
 
 }
 

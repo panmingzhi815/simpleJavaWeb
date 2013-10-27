@@ -16,7 +16,7 @@
 			<label>角色名称</label> <input id="search_any_name" /> <a id="searchBtn" href="#" class="easyui-linkbutton" iconCls="icon-search">查询</a>
 	</div>
 	<div region="center" border="false" style="padding: 1px 1px 1px 1px">
-		<table id="dg" idField="id" title="角色管理" class="easyui-datagrid" fit="true" data-options="singleSelect:true,url:'/admin/roleJSONPage'" border="true" toolbar="#toolbar" pagination="true" rownumbers="true" singleSelect="true">
+		<table id="dg" idField="id" title="角色管理" class="easyui-datagrid" fit="true" data-options="singleSelect:true,url:'/admin/role/roleJSONPage'" border="true" toolbar="#toolbar" pagination="true" rownumbers="true" singleSelect="true">
 			<thead>
 				<tr>
 					<th field="name" width="150">角色名称</th>
@@ -71,12 +71,12 @@
 	}
 	function saveRole() {
 		$('#fm').form('submit', {
-			url : "/admin/saveSysRole",
+			url : "/admin/role/saveSysRole",
 			onSubmit : function() {
 				return $(this).form('validate');
 			},
 			success : function(result) {
-				if (result != 0) {
+				if (result.id != 0) {
 					$('#dlg').dialog('close');
 					$('#dg').datagrid('reload');
 				} else {
@@ -94,7 +94,7 @@
 			$.messager.confirm('确认',
 					'你确定要删除这条 记录吗?', function(r) {
 						if (r) {
-							$.post('/admin/deleteSysRole', {
+							$.post('/admin/role/deleteSysRole', {
 								id : row.id
 							}, function(result) {
 								if (result) {

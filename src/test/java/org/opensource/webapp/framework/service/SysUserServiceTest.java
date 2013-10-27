@@ -11,6 +11,7 @@ import org.opensource.webapp.framework.page.PageResult;
 import org.opensource.webapp.framework.page.SearchFilter;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -22,7 +23,7 @@ public class SysUserServiceTest extends AbstractTest{
 		PageParam pageParam = new PageParam(0,Integer.MAX_VALUE);
 		SearchFilter filter = new SearchFilter();
 		PageResult<SysUser> sysUserList = sysUserService.getSysUserList(pageParam, filter);
-		List<SysUser> rows = sysUserList.getRows();
+		Collection<SysUser> rows = sysUserList.getRows();
 		for (SysUser sysUser2 : rows) {
 			sysUserService.removeSysUser(sysUser2.getId());
 		}

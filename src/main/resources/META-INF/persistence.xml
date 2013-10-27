@@ -32,10 +32,10 @@
 			<!--配置数据库用户名 -->
 			<property name="hibernate.connection.username" value="sa" />
 			<!--配置数据库密码 -->
-			<property name="hibernate.connection.password" value="123" />
+			<property name="hibernate.connection.password" value="1" />
 			<!--配置数据库url -->
 			<property name="hibernate.connection.url"
-				value="jdbc:jtds:sqlserver://127.0.0.1:1433;;DatabaseName=webapp" />
+				value="jdbc:jtds:sqlserver://127.0.0.1:1433;DatabaseName=webapp" />
 			<!--设置外连接抓取树的最大深度 -->
 			<property name="hibernate.max_fetch_depth" value="3" />
 			<!--自动输出schema创建DDL语句 -->

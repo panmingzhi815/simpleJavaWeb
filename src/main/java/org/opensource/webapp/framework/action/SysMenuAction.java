@@ -25,8 +25,8 @@ public class SysMenuAction {
 
     @RequestMapping(value="/saveSysMenu")
     @ResponseBody
-    public Long saveSysMenu(SysMenu sysMenu){
-        return sysMenuService.saveSysMenu(sysMenu);
+    public String saveSysMenu(SysMenu sysMenu){
+        return "{id:"+ sysMenuService.saveSysMenu(sysMenu) +"}";
     }
 
     @RequestMapping(value="/deleteSysMenu")

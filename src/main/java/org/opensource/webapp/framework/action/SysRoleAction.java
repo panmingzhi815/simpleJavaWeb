@@ -22,7 +22,7 @@ import java.util.Map;
  * To change this template use File | Settings | File Templates.
  */
 @Controller
-@RequestMapping(value="/admin")
+@RequestMapping(value="/admin/role")
 public class SysRoleAction {
 
     @Autowired
@@ -44,8 +44,8 @@ public class SysRoleAction {
 
     @RequestMapping(value="/saveSysRole")
     @ResponseBody
-    public Long saveSysRole(SysRole sysRole){
-        return sysRoleService.save(sysRole);
+    public String saveSysRole(SysRole sysRole){
+        return "{id:"+sysRoleService.save(sysRole)+"}";
     }
 
     @RequestMapping(value="/deleteSysRole")

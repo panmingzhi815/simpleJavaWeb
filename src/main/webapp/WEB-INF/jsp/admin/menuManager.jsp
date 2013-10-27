@@ -130,7 +130,7 @@
                 return $(this).form('validate');
             },
             success : function(result) {
-                if (result != 0) {
+                if (result.id != 0) {
                     $('#dlg').dialog('close');
                     var parentId = $('#parentId').val();
                     if(parentId == ''){

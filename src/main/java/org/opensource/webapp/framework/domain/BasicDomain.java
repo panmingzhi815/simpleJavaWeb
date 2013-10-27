@@ -5,6 +5,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+/**
+ * Created with IntelliJ IDEA.
+ * User: panmingzhi815
+ * Date: 13-10-26
+ * Time: 下午5:33
+ * 所有数据对象的父类,统一主键生成方式
+ */
 @MappedSuperclass
 public abstract class BasicDomain{
 	
@@ -33,4 +40,9 @@ public abstract class BasicDomain{
 		
 		return this.id.equals(basicDomain.getId());
 	}
+
+    @Override
+    public int hashCode() {
+        return this.id.hashCode();
+    }
 }
