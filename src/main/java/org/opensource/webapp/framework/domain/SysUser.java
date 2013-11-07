@@ -48,7 +48,7 @@ public class SysUser extends BasicDomain {
 	private SysUserState sysUserState;
 
 	//用户所拥有的角色
-	@ManyToMany(cascade=CascadeType.REMOVE)
+	@ManyToMany
 	@JoinTable(name="SysUser_SysRole",joinColumns={@JoinColumn(name="SysUserId",referencedColumnName="id")},
 	inverseJoinColumns={@JoinColumn(name="SysRoleId",referencedColumnName="id")})
 	private Set<SysRole> sysRoleSet = new HashSet<SysRole>();

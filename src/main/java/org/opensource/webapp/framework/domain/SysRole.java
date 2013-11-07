@@ -18,7 +18,7 @@ public class SysRole extends BasicDomain {
 	private String note;
 
 	// 拥有该角色的用户
-	@ManyToMany(cascade = CascadeType.REMOVE,mappedBy = "sysRoleSet",fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "sysRoleSet")
 	private Set<SysUser> sysUserSet;
 
 	// 角色直接拥有的权限

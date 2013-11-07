@@ -16,18 +16,18 @@ public class SysPrivilege extends BasicDomain{
     @ManyToOne
     private SysMenu sysMenu;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.REMOVE)
     private Set<SysMenuController> sysMenuControllerSet;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.REMOVE)
     private Set<SysMenuExpression> sysMenuExpressionSet;
 
     //直接拥有该权限的用户
-    @ManyToMany(mappedBy="SysPrivilegeSet",cascade= CascadeType.REMOVE)
+    @ManyToMany(mappedBy="SysPrivilegeSet")
     private Set<SysUser> sysUserSet;
 
     //直接拥有该权限的角色
-    @ManyToMany(mappedBy="SysPrivilegeSet",cascade=CascadeType.REMOVE)
+    @ManyToMany(mappedBy="SysPrivilegeSet")
     private Set<SysRole> sysRoleSet;
 
     public SysMenu getSysMenu() {

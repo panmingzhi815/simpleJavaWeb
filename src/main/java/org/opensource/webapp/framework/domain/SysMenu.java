@@ -48,6 +48,9 @@ public class SysMenu extends BasicDomain implements Comparable<SysMenu>{
     @OneToMany(cascade = CascadeType.REMOVE)
     private Set<SysMenuExpression> sysMenuExpressionSet;
 
+    @OneToMany(cascade = CascadeType.REMOVE,mappedBy = "sysMenu")
+    private Set<SysPrivilege> sysPrivilegeSet;
+
     public String getText() {
         return text;
     }
@@ -134,6 +137,14 @@ public class SysMenu extends BasicDomain implements Comparable<SysMenu>{
 
     public void setSysMenuExpressionSet(Set<SysMenuExpression> sysMenuExpressionSet) {
         this.sysMenuExpressionSet = sysMenuExpressionSet;
+    }
+
+    public Set<SysPrivilege> getSysPrivilegeSet() {
+        return sysPrivilegeSet;
+    }
+
+    public void setSysPrivilegeSet(Set<SysPrivilege> sysPrivilegeSet) {
+        this.sysPrivilegeSet = sysPrivilegeSet;
     }
 
     @Override

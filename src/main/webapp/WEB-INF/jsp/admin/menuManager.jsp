@@ -47,7 +47,7 @@
                 <label>名称:</label> <input name="text" class="easyui-validatebox" required="true">
             </div>
             <div class="formDiv">
-                <label>图标:</label> <input name="iconCls" class="easyui-validatebox" required="true">
+                <label>图标:</label> <input id="input_icon" name="iconCls" class="easyui-validatebox" required="true">
             </div>
             <div class="formDiv">
                 <label>排序:</label> <input name="ordinal" class="easyui-validatebox" required="true">
@@ -73,7 +73,6 @@
                 }
             });
         });
-
 	})
 
     function newUser(){
