@@ -2,80 +2,98 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.opensource</groupId>
-	<artifactId>SimpleJavaWeb</artifactId>
-	<version>1.0-SNAPSHOT</version>
-	<description>simple java web application</description>
+	<artifactId>webapp</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
+	<name>webapp</name>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- 主要框架依赖 -->
 		<spring.version>3.2.2.RELEASE</spring.version>
 		<struts2.version>2.3.14</struts2.version>
 		<hibernate.version>4.2.1.Final</hibernate.version>
 		<jpa.version>2.0-cr-1</jpa.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring-data-jpa.version>1.3.2.RELEASE</spring-data-jpa.version>
+		<c3p0.version>0.9.5-pre5</c3p0.version>
+		<!-- 工具依赖 -->
+		<junit.version>4.4</junit.version>
+		<log4j.version>1.2.17</log4j.version>
+		<json-simple.version>1.1</json-simple.version>
+		<!-- 数据库依赖 -->
+		<jtds.version>1.3.0</jtds.version>
+		<mysql.version>5.1.25</mysql.version>
+		<derby.version>10.10.1.1</derby.version>
+
+		<jetty.version>9.0.4.v20130625</jetty.version>
+		<servlet.version>6.0.37</servlet.version>
+		<jackson.version>1.9.13</jackson.version>
+		<ehcache.version>2.6.6</ehcache.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>${servlet.version}</version>
+		</dependency>
+		
+        <dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+            
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.4</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.web</groupId>
-			<artifactId>javax.servlet.jsp.jstl</artifactId>
-			<version>1.2.1</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet.jsp.jstl</groupId>
-			<artifactId>javax.servlet.jsp.jstl-api</artifactId>
-			<version>1.2.1</version>
-			<scope>provided</scope>
+			<version>${junit.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
+			<version>${log4j.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
 			<artifactId>json-simple</artifactId>
-			<version>1.1</version>
+			<version>${json-simple.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.9.4</version>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>${spring-data-jpa.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.1</version>
-		</dependency>
+
+
 		<!-- 数据库驱动 -->
 		<dependency>
 			<groupId>net.sourceforge.jtds</groupId>
 			<artifactId>jtds</artifactId>
-			<version>1.3.0</version>
-			<scope>runtime</scope>
+			<version>${jtds.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.25</version>
-			<scope>runtime</scope>
+			<version>${mysql.version}</version>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.apache.derby</groupId>
 			<artifactId>derby</artifactId>
-			<version>10.10.1.1</version>
+			<version>${derby.version}</version>
+		</dependency>
+            
+            
+		<!-- struts2 -->
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-core</artifactId>
+			<version>${struts2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-spring-plugin</artifactId>
+			<version>${struts2.version}</version>
 		</dependency>
 
 		<!-- jpa2 -->
@@ -83,18 +101,6 @@
 			<groupId>org.hibernate.java-persistence</groupId>
 			<artifactId>jpa-api</artifactId>
 			<version>${jpa.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-jpa</artifactId>
-			<version>1.3.2.RELEASE</version>
-		</dependency>
-		
-		<!-- jpa criteria implements like by hibernate -->
-		<dependency>
-			<groupId>org.criteria4jpa</groupId>
-			<artifactId>criteria4jpa</artifactId>
-			<version>0.2</version>
 		</dependency>
 
 		<!-- hibernate4 -->
@@ -106,14 +112,24 @@
 		<dependency>
 			<groupId>com.mchange</groupId>
 			<artifactId>c3p0</artifactId>
-			<version>0.9.5-pre2</version>
+			<version>${c3p0.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-ehcache</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
 		
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache-core</artifactId>
+			<version>${ehcache.version}</version>
+		</dependency>
 		<!-- spring3 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -170,30 +186,38 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-
+            
 	</dependencies>
-
 	<build>
+		<sourceDirectory>src/main/java</sourceDirectory>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.3.2</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.7</source>
+					<target>1.7</target>
 				</configuration>
 			</plugin>
 
 			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<webappDirectory></webappDirectory>
+					<warSourceDirectory>${basedir}/src/main/webapp</warSourceDirectory>
+					<version>3.0</version>
+					<failOnMissingWebXml>true</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>9.0.4.v20130625</version>
+				<version>${jetty.version}</version>
 				<configuration>
 					<scanIntervalSeconds>1</scanIntervalSeconds>
 				</configuration>
 			</plugin>
-
 		</plugins>
 	</build>
-
 </project>

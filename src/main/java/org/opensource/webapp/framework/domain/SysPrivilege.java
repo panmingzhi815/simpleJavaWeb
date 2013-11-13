@@ -1,6 +1,10 @@
 package org.opensource.webapp.framework.domain;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import java.util.Set;
 
 /**
@@ -11,6 +15,7 @@ import java.util.Set;
  * 系统权限,用户与角色不应直接分配菜单,应是分配相应的权限.
  */
 @Entity(name = "SysPrivilege")
+@Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class SysPrivilege extends BasicDomain{
     //系统菜单
     @ManyToOne

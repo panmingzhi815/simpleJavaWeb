@@ -45,6 +45,7 @@ public class SysUserServiceTest extends AbstractTest{
 //		assertEquals(1,sysUserList.getTotal());
 //		assertEquals(1,sysUserList.getRows().size());
 		
+		
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(sysUserList.getRows());
 		System.out.println(json);

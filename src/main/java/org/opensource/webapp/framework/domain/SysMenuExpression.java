@@ -1,5 +1,7 @@
 package org.opensource.webapp.framework.domain;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.opensource.webapp.framework.domain.enums.SysExpressionEnum;
 
 import javax.persistence.Entity;
@@ -19,6 +21,7 @@ import javax.persistence.Enumerated;
      * expressionValue = 1000
  */
 @Entity(name = "SysMenuExpression")
+@Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class SysMenuExpression extends BasicDomain{
     //表达式名称,分配数据级别权限时,直接只显示此功能名称给用户
     private String name;

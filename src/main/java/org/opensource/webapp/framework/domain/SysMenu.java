@@ -5,6 +5,9 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 /**
  * Created with IntelliJ IDEA.
  * User: panmingzhi815
@@ -13,6 +16,7 @@ import javax.persistence.*;
  * 系统菜单对象
  */
 @Entity(name="SysMenu")
+@Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class SysMenu extends BasicDomain implements Comparable<SysMenu>{
 
     //菜单显示名称

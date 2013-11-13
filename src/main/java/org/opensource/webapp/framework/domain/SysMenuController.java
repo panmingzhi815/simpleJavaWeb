@@ -2,6 +2,9 @@ package org.opensource.webapp.framework.domain;
 
 import javax.persistence.Entity;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 /**
  * Created with IntelliJ IDEA.
  * User: panmingzhi815
@@ -12,6 +15,7 @@ import javax.persistence.Entity;
  * name = "审核" or name = "删除" or name = "打印"
  */
 @Entity(name = "SysMenuController")
+@Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class SysMenuController extends BasicDomain{
     //控制名称
     private String name;

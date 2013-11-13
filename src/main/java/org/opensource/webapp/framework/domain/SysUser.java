@@ -17,6 +17,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.opensource.webapp.framework.domain.enums.SysUserState;
 
 /**
@@ -27,6 +29,7 @@ import org.opensource.webapp.framework.domain.enums.SysUserState;
  * 系统用户
  */
 @Entity(name = "SysUser")
+@Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class SysUser extends BasicDomain {
 
 	private String loginName;

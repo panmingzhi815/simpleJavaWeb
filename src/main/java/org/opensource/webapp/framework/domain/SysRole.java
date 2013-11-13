@@ -4,6 +4,9 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 /**
  * Created with IntelliJ IDEA.
  * User: panmingzhi815
@@ -12,6 +15,7 @@ import javax.persistence.*;
  * 系统角色
  */
 @Entity(name = "SysRole")
+@Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class SysRole extends BasicDomain {
 
 	private String name;

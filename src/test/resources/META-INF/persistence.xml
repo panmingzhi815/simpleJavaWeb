@@ -6,15 +6,12 @@
 
 	<persistence-unit name="derby" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<class>org.opensource.webapp.framework.domain.BasicDomain</class>
-		<class>org.opensource.webapp.framework.domain.SysUser</class>
-		<class>org.opensource.webapp.framework.domain.SysRole</class>
-		<class>org.opensource.webapp.framework.domain.SysMenu</class>
+
 		<properties>
 			<property name="hibernate.connection.driver_class" value="org.apache.derby.jdbc.EmbeddedDriver" />
-			<property name="hibernate.connection.url" value="jdbc:derby:derbyDB;create=true" />
-			<property name="hibernate.connection.username" value="" />
-			<property name="hibernate.connection.password" value="" />
+			<property name="hibernate.connection.url" value="jdbc:derby:webapp;create=true" />
+			<property name="hibernate.connection.username" value="app" />
+			<property name="hibernate.connection.password" value="app" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.hbm2ddl.auto" value="create" />
@@ -48,10 +45,7 @@
 
 	<persistence-unit name="mysql" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<class>org.opensource.webapp.framework.domain.SysUser</class>
-		<class>org.opensource.webapp.framework.domain.SysMenu</class>
-		<class>org.opensource.webapp.framework.domain.SysRole</class>
-		<class>org.opensource.webapp.framework.domain.BasicDomain</class>
+
 		<properties>
 			<!--配置Hibernate方言 -->
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
