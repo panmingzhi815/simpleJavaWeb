@@ -29,6 +29,7 @@
 		<servlet.version>6.0.37</servlet.version>
 		<jackson.version>1.9.13</jackson.version>
 		<ehcache.version>2.6.6</ehcache.version>
+        <jstl.version>1.2</jstl.version>
 	</properties>
 
 	<dependencies>
@@ -37,7 +38,18 @@
 			<artifactId>servlet-api</artifactId>
 			<version>${servlet.version}</version>
 		</dependency>
-		
+
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${jstl.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlet</artifactId>
+            <version>${jetty.version}</version>
+        </dependency>
+
         <dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
@@ -206,7 +218,6 @@
 				<configuration>
 					<webappDirectory></webappDirectory>
 					<warSourceDirectory>${basedir}/src/main/webapp</warSourceDirectory>
-					<version>3.0</version>
 					<failOnMissingWebXml>true</failOnMissingWebXml>
 				</configuration>
 			</plugin>

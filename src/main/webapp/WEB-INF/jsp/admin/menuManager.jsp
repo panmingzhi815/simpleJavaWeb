@@ -21,8 +21,8 @@
 			fit="true" border="true" toolbar="#toolbar" singleSelect="true">
 			<thead>
 				<tr>
-					<th field="display" width="150">显示</th>
-					<th field="text" width="150">名称</th>
+					<th field="display" width="150">名称</th>
+					<th field="text" width="150" hidden="true"></th>
 					<th field="iconCls" width="200">图标</th>
 					<th field="ordinal" width="200">排序</th>
 					<th field="url" width="300">链接</th>
@@ -44,22 +44,26 @@
             <input type="hidden" id="id" name="id">
             <input type="hidden" id="parentId" name="parentId">
             <div class="formDiv">
-                <label>名称:</label> <input name="text" class="easyui-validatebox" required="true">
+                <label>名称:</label>
+                <input name="text" class="easyui-validatebox" required="true">
             </div>
             <div class="formDiv">
-                <label>图标:</label> <input id="input_icon" name="iconCls" class="easyui-validatebox" required="true">
+                <label>图标:</label>
+                <input id="input_icon" name="iconCls" class="easyui-validatebox" required="true">
             </div>
             <div class="formDiv">
-                <label>排序:</label> <input name="ordinal" class="easyui-validatebox" required="true">
+                <label>排序:</label>
+                <input name="ordinal" class="easyui-numberspinner" required="required" data-options="min:1,max:1000,editable:true">
             </div>
             <div class="formDiv">
-                <label>链接:</label> <input name="url" class="easyui-validatebox" required="true">
+                <label>链接:</label>
+                <input name="url" class="easyui-validatebox" required="true" validType="url">
             </div>
         </form>
     </div>
     <div id="dlg-buttons">
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUser()">Save</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">Cancel</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUser()">保存</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">取消</a>
     </div>
 </body>
 </html>
@@ -67,7 +71,7 @@
 	$(function() {
         $(function(){
             $('#tg').treegrid({
-                url: '/admin/getSysMenuList',
+                url: '/admin/menu/getSysMenuList',
                 loadFilter: function(rows){
                     return convert(rows);
                 }
@@ -93,7 +97,7 @@
             $.messager.confirm('确认',
                     '你确定要删除这条记录吗?', function(r) {
                         if (r) {
-                            $.post('/admin/deleteSysMenu', {
+                            $.post('/admin/menu/deleteSysMenu', {
                                 id : node.id
                             }, function(result) {
                                 if (result) {
@@ -124,7 +128,7 @@
 
     function saveUser() {
         $('#fm').form('submit', {
-            url : "/admin/saveSysMenu",
+            url : "/admin/menu/saveSysMenu",
             onSubmit : function() {
                 return $(this).form('validate');
             },

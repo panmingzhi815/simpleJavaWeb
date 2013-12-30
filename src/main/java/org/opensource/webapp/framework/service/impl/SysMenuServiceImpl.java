@@ -29,10 +29,16 @@ public class SysMenuServiceImpl implements SysMenuService {
                 sysMenu.setParent(parent);
                 //让父菜单改变关闭标识
                 parent.setState("closed");
-                parent.setParentId(0L);
+                sysMenu.setParent(parent);
                 sysMenuDao.save(parent);
             }
         }
+
+        if(sysMenu.getId() != null){
+            Long aLong = sysMenuDao.countByParent(sysMenu.getId());
+            sysMenu.setState(aLong == 0 ? "open":"closed");
+        }
+
 		return sysMenuDao.save(sysMenu).getId();
 	}
 

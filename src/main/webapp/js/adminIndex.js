@@ -16,7 +16,7 @@ var _menus = [{
 				"menuId": "13",
 				"menuName": "菜单管理",
 				"icon": "icon-menu",
-				"url": "/admin/menuManager"
+				"url": "/admin/menu/menuManager"
 			}]
 	}];
 
@@ -51,7 +51,7 @@ function InitLeftMenu() {
 			$("#tabs").tabs("select",menuName);
 			 return;
 		}
-		addIframeTab(menuName,url,icon);
+        addTab(menuName,url,icon);
 	}).hover(function(){
 		$(this).addClass("li_hover");
 	},function(){
@@ -67,25 +67,6 @@ function addTab(subtitle,url,icon){
 		icon:icon,
 		border:false
 	});
-}
-
-function addIframeTab(subTitle,url,icon){
-	$('#tabs').tabs('addIframeTab',{
-		tab:{
-            title:subTitle,
-            icon:icon,
-            closable:true,
-            tools:[{
-                iconCls:'icon-mini-refresh',
-                handler:function(e){
-                	var title = $(e.target).parent().parent().text();
-                    $('#tabs').tabs('updateIframeTab',{'which':title});
-                }
-            }]
-        },
-		iframe:{src:url}
-	});
-    $('#tabs').tabs('addEventParam');
 }
     
 function createFrame(url)

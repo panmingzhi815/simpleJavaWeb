@@ -34,7 +34,7 @@ public class SysMenu extends BasicDomain implements Comparable<SysMenu>{
 
     //父菜单
     @ManyToOne
-    @JoinColumn(name="parent",nullable = true)
+    @JoinColumn(name="parent",nullable = true,updatable = false)
     private SysMenu parent;
     //只映射id,懒加载依然起效
     @Column(name = "parent",insertable = false,updatable = false)

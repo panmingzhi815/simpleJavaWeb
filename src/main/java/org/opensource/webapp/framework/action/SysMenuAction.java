@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping(value="/admin")
+@RequestMapping(value="/admin/menu/")
 public class SysMenuAction {
 
 	@Autowired

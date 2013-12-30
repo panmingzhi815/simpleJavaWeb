@@ -1,18 +1,15 @@
 package org.opensource.webapp.framework.action;
 
+import java.util.List;
+import java.util.Map;
+
 import org.opensource.webapp.framework.domain.SysRole;
-import org.opensource.webapp.framework.page.PageParam;
-import org.opensource.webapp.framework.page.PageResult;
-import org.opensource.webapp.framework.page.SearchFilter;
-import org.opensource.webapp.framework.page.ServletUtil;
 import org.opensource.webapp.framework.service.SysRoleService;
+import org.opensource.webapp.framework.util.MapOutUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,7 +19,7 @@ import java.util.Map;
  * To change this template use File | Settings | File Templates.
  */
 @Controller
-@RequestMapping(value="/admin/role")
+@RequestMapping(value="/admin/role/")
 public class SysRoleAction {
 
     @Autowired
@@ -33,24 +30,21 @@ public class SysRoleAction {
         return "admin/roleManager";
     }
 
-    @RequestMapping(value="/roleJSONPage")
-    @ResponseBody
-    public PageResult<SysRole> getJSONPage(HttpServletRequest request){
-        PageParam pageParam = ServletUtil.getPageParam(request);
-        SearchFilter searchFilter = ServletUtil.getSearchFilter(request);
-        PageResult<SysRole> pageResult = sysRoleService.getPageList(pageParam,searchFilter);
-        return pageResult;
-    }
-
     @RequestMapping(value="/saveSysRole")
     @ResponseBody
     public String saveSysRole(SysRole sysRole){
-        return "{id:"+sysRoleService.save(sysRole)+"}";
+        return "{id:"+ sysRoleService.saveSysRole(sysRole) +"}";
     }
 
     @RequestMapping(value="/deleteSysRole")
     @ResponseBody
     public boolean deleteSysRole(Long id){
-        return  sysRoleService.remove(id);
+        return sysRoleService.removeSysRole(id);
+    }
+
+    @RequestMapping(value="/getSysRoleList")
+    @ResponseBody
+    public List<SysRole> getSysRoleList(Long id){
+        return MapOutUtil.mapOutList(sysRoleService.getChildrenSysRoleById(id));
     }
 }

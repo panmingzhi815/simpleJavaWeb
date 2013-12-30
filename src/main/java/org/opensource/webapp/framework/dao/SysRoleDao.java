@@ -1,7 +1,10 @@
 package org.opensource.webapp.framework.dao;
 
+import java.util.List;
+
 import org.opensource.webapp.framework.domain.SysRole;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
@@ -13,4 +16,12 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  */
 public interface SysRoleDao extends PagingAndSortingRepository<SysRole, Long>,
         JpaSpecificationExecutor<SysRole>{
+	
+    public List<SysRole> findByParentIsNull();
+
+    public List<SysRole> findByParent(SysRole sysRole);
+
+    @Query("SELECT COUNT(sr) FROM SysRole sr WHERE  sr.parent.id= ?1")
+	public Long countByParent(Long parentId);
+    
 }

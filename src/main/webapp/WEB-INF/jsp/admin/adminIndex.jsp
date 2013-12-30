@@ -17,9 +17,8 @@
     </head>
     <body class="easyui-layout" style="margin: 1px 2px 2px 2px">
         //banner制作网址 http://www.55.la/banner/
-        <div data-options="region:'north'" border="true" style="height: 70px;overflow: hidden;">
-            <img src="images/adminBanner.png" style="width: 110%;height: 110%; z-index: 1;position:absolute ">
-            <div style="position: absolute;z-index: 2;height: 90px;width: 100%">
+        <div data-options="region:'north'" border="false" style="height: 70px;overflow: hidden;">
+            <div style="height: 90px;width: 100%;background:url('images/header.gif') repeat-x">
                 <table style="width: 100%">
                     <tr>
                         <td valign="middle" rowspan="3">

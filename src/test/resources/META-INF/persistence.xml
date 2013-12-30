@@ -6,15 +6,46 @@
 
 	<persistence-unit name="derby" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-
+        <class>org.opensource.webapp.framework.domain.SysRole</class>
+        <class>org.opensource.webapp.framework.domain.SysMenu</class>
+        <class>org.opensource.webapp.framework.domain.SysUser</class>
+        <class>org.opensource.webapp.framework.domain.SysEmail</class>
+        <class>org.opensource.webapp.framework.domain.SysMenuController</class>
+        <class>org.opensource.webapp.framework.domain.SysMenuExpression</class>
+        <class>org.opensource.webapp.framework.domain.SysPrivilege</class>
+        <class>org.opensource.webapp.framework.domain.Account</class>
 		<properties>
 			<property name="hibernate.connection.driver_class" value="org.apache.derby.jdbc.EmbeddedDriver" />
-			<property name="hibernate.connection.url" value="jdbc:derby:webapp;create=true" />
+			<property name="hibernate.connection.url" value="jdbc:derby:memory:webapp;create=true" />
 			<property name="hibernate.connection.username" value="app" />
 			<property name="hibernate.connection.password" value="app" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect" />
 			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.hbm2ddl.auto" value="create" />
+            <property name="hibernate.hbm2ddl.auto" value="create" />
+
+			<!-- 开启二级缓存 -->
+			<property name="hibernate.cache.use_second_level_cache"
+				value="true" />
+			<!-- 启动"查询缓存"如果想缓存使用findall()、list()、Iterator()、createCriteria()、createQuery()等方法获得的数据结果集,必须配置此项 -->
+			<property name="hibernate.cache.use_query_cache" value="true" />
+			<!-- 设置二级缓存插件EHCache的Provider类 -->
+			<!--<property name="hibernate.cache.provider_class" value="org.hibernate.cache.EhCacheProvider" />-->
+			<!-- 二级缓存区域名的前缀 -->
+			<property name="hibernate.cache.region_prefix" value="test" />
+			<!-- 高速缓存提供程序 -->
+			<property name="hibernate.cache.region.factory_class"
+				value="org.hibernate.cache.ehcache.EhCacheRegionFactory" />
+			<!-- Hibernate4以后都封装到org.hibernate.cache.ehcache.EhCacheRegionFactory -->
+			<!-- 指定缓存配置文件位置 -->
+			<property name="hibernate.cache.provider_configuration_file_resource_path"
+				value="ehcache.xml" />
+			<!-- 强制Hibernate以更人性化的格式将数据存入二级缓存 -->
+			<property name="hibernate.cache.use_structured_entries"
+				value="true" />
+
+			<!-- Hibernate将收集有助于性能调节的统计数据 -->
+			<property name="hibernate.generate_statistics" value="true" />
+
 		</properties>
 	</persistence-unit>
 
