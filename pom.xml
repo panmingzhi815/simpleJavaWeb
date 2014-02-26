@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.opensource</groupId>
-	<artifactId>webapp</artifactId>
+	<artifactId>simpleJavaWeb</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>webapp</name>
+	<name>simpleJavaWeb</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -24,8 +24,11 @@
 		<jtds.version>1.3.0</jtds.version>
 		<mysql.version>5.1.25</mysql.version>
 		<derby.version>10.10.1.1</derby.version>
+        <!--插件依赖-->
+		<plugin.jetty.version>9.0.4.v20130625</plugin.jetty.version>
+        <plugin.war.version>2.4</plugin.war.version>
+        <plugin.compiler.version>2.3</plugin.compiler.version>
 
-		<jetty.version>9.0.4.v20130625</jetty.version>
 		<servlet.version>6.0.37</servlet.version>
 		<jackson.version>1.9.13</jackson.version>
 		<ehcache.version>2.6.6</ehcache.version>
@@ -47,7 +50,7 @@
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-servlet</artifactId>
-            <version>${jetty.version}</version>
+            <version>${plugin.jetty.version}</version>
         </dependency>
 
         <dependency>
@@ -205,7 +208,7 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
+				<version>${plugin.compiler.version}</version>
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
@@ -214,7 +217,7 @@
 
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>2.2</version>
+				<version>${plugin.war.version}</version>
 				<configuration>
 					<webappDirectory></webappDirectory>
 					<warSourceDirectory>${basedir}/src/main/webapp</warSourceDirectory>
@@ -224,7 +227,7 @@
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>${jetty.version}</version>
+				<version>${plugin.jetty.version}</version>
 				<configuration>
 					<scanIntervalSeconds>1</scanIntervalSeconds>
 				</configuration>

@@ -46,11 +46,7 @@ function InitLeftMenu() {
 		var menuName = $(this).attr("menuName");
 		var url = $(this).attr("url");
 		var icon = $(this).attr("icon");
-		var exists = $("#tabs").tabs("exists",menuName);
-		if(exists){
-			$("#tabs").tabs("select",menuName);
-			 return;
-		}
+
         addTab(menuName,url,icon);
 	}).hover(function(){
 		$(this).addClass("li_hover");
@@ -60,19 +56,17 @@ function InitLeftMenu() {
 }
 
 function addTab(subtitle,url,icon){
-	$('#tabs').tabs('add',{
-		title:subtitle,
-		content:createFrame(url),
-		closable:true,
-		icon:icon,
-		border:false
-	});
-}
-    
-function createFrame(url)
-{
-	var s = '<iframe scrolling="auto" frameborder="0"  src="'+url+'" style="width:100%;height:100%;"></iframe>';
-	return s;
+    if ($('#tabs').tabs('exists', subtitle)){
+        $('#tabs').tabs('select', subtitle);
+    } else {
+        var content = '<div style="width: 100%;height: 100%; overflow: hidden"><iframe scrolling="auto" frameborder="0" style="width: 100%;height: 100%;" src="'+url+'"></iframe></div>';
+        $('#tabs').tabs('add',{
+            title:subtitle,
+            content:content,
+            closable:true,
+            icon:icon
+        });
+    }
 }
 
 // error,info,question,warning
