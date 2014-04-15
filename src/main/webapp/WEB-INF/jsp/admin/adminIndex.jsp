@@ -51,7 +51,9 @@
             <div id="nav" class="easyui-accordion" data-options="fit:true,border:false,animate:false"></div>
         </div>
         <div data-options="region:'center',border:false">
-            <div id="tabs" class="easyui-tabs" data-options="fit:true,border:true"></div>
+            <div id="tabs" class="easyui-tabs" fit="true">
+                <div title="欢迎"></div>
+            </div>
         </div>
     </body>
 </html>

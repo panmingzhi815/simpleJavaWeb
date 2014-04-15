@@ -33,6 +33,7 @@
 		<jackson.version>1.9.13</jackson.version>
 		<ehcache.version>2.6.6</ehcache.version>
         <jstl.version>1.2</jstl.version>
+        <guava.version>r09</guava.version>
 	</properties>
 
 	<dependencies>
@@ -40,17 +41,21 @@
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>${servlet.version}</version>
+            <scope>provided</scope>
 		</dependency>
 
         <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
             <version>${jstl.version}</version>
+            <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-servlet</artifactId>
             <version>${plugin.jetty.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -63,6 +68,7 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
+            <scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
@@ -74,14 +80,13 @@
 			<artifactId>json-simple</artifactId>
 			<version>${json-simple.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-jpa</artifactId>
-			<version>${spring-data-jpa.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
 
-
-		<!-- 数据库驱动 -->
+        <!-- 数据库驱动 -->
 		<dependency>
 			<groupId>net.sourceforge.jtds</groupId>
 			<artifactId>jtds</artifactId>
@@ -97,8 +102,7 @@
 			<artifactId>derby</artifactId>
 			<version>${derby.version}</version>
 		</dependency>
-            
-            
+
 		<!-- struts2 -->
 		<dependency>
 			<groupId>org.apache.struts</groupId>
@@ -139,12 +143,19 @@
 			<artifactId>hibernate-ehcache</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-		
+		<!--二级缓存-->
 		<dependency>
 			<groupId>net.sf.ehcache</groupId>
 			<artifactId>ehcache-core</artifactId>
 			<version>${ehcache.version}</version>
 		</dependency>
+
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>${spring-data-jpa.version}</version>
+        </dependency>
+
 		<!-- spring3 -->
 		<dependency>
 			<groupId>org.springframework</groupId>

@@ -21,8 +21,8 @@ public class SysPrivilege extends BasicDomain{
     @ManyToOne
     private SysMenu sysMenu;
 
-    @OneToMany(cascade = CascadeType.REMOVE)
-    private Set<SysMenuController> sysMenuControllerSet;
+    @ElementCollection
+    private Set<String> sysMenuControllerSet;
 
     @OneToMany(cascade = CascadeType.REMOVE)
     private Set<SysMenuExpression> sysMenuExpressionSet;
@@ -43,11 +43,11 @@ public class SysPrivilege extends BasicDomain{
         this.sysMenu = sysMenu;
     }
 
-    public Set<SysMenuController> getSysMenuControllerSet() {
+    public Set<String> getSysMenuControllerSet() {
         return sysMenuControllerSet;
     }
 
-    public void setSysMenuControllerSet(Set<SysMenuController> sysMenuControllerSet) {
+    public void setSysMenuControllerSet(Set<String> sysMenuControllerSet) {
         this.sysMenuControllerSet = sysMenuControllerSet;
     }
 

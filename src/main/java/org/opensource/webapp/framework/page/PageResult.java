@@ -1,10 +1,9 @@
 package org.opensource.webapp.framework.page;
 
+import org.opensource.webapp.framework.util.LazySerializationUtil;
+
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-
-import org.opensource.webapp.framework.util.MapOutUtil;
 
 public class PageResult<T> {
 	
@@ -30,7 +29,8 @@ public class PageResult<T> {
 	}
 
 	public Collection<T> getRows() {
-		return MapOutUtil.mapOutList(rows);
+        return LazySerializationUtil.serializeCollections(rows);
+//		return MapOutUtil.mapOutList(rows);
 	}
 
 	public void setRows(Collection<T> rows) {

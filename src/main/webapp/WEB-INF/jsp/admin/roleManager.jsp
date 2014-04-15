@@ -11,7 +11,7 @@
     <%@include file="/include/easyui.jsp" %>
     <link rel="stylesheet" type="text/css" href="<%=basePath %>css/default.css"/>
 </head>
-<body class="easyui-layout">
+<body class="easyui-layout"  style="overflow: hidden">
 <div region="center" border="false" style="padding: 1px 1px 1px 1px">
     <table id="dg" idField="id" title="角色管理" class="easyui-treegrid" treeField="name" fit="true"
            data-options="singleSelect:true,url:'/admin/role/getSysRoleList'" border="true" toolbar="#toolbar">

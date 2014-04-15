@@ -4,9 +4,11 @@ import org.opensource.webapp.framework.domain.SysRole;
 import org.opensource.webapp.framework.domain.SysUser;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.QueryHints;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
+import javax.persistence.QueryHint;
 import java.util.Collection;
 
 public interface SysUserDao extends PagingAndSortingRepository<SysUser, Long>,

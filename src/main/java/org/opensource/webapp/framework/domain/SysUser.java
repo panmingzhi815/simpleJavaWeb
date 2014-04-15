@@ -1,25 +1,13 @@
 package org.opensource.webapp.framework.domain;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.opensource.webapp.framework.domain.enums.SysUserState;
+
+import javax.persistence.*;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -30,6 +18,7 @@ import org.opensource.webapp.framework.domain.enums.SysUserState;
  */
 @Entity(name = "SysUser")
 @Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Cacheable(true)
 public class SysUser extends BasicDomain {
 
 	private String loginName;

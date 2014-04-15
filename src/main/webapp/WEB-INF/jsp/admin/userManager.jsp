@@ -11,7 +11,7 @@
 <%@include file="/include/easyui.jsp"%>
 <link rel="stylesheet" type="text/css" href="<%=basePath %>css/default.css" />
 </head>
-<body class="easyui-layout">
+<body class="easyui-layout"  style="overflow: hidden">
 	<div region="north" border="false" style="padding: 10px 10px 10px 10px">
 			<label>用户名</label> <input id="search_any_loginName" class="form-control"/> <label>昵称</label> <input id="search_any_nickName"  class="form-control"/> <a id="searchBtn" href="#" class="easyui-linkbutton" iconCls="icon-search">查询</a>
 	</div>

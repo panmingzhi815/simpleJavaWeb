@@ -48,6 +48,12 @@ function InitLeftMenu() {
 		var icon = $(this).attr("icon");
 
         addTab(menuName,url,icon);
+        //唯独给当前选中添加样式
+        var divArr = $('li div');
+        $.each(divArr,function(i,n){
+            $(n).removeClass("li_focus")
+        });
+        $(this).addClass("li_focus");
 	}).hover(function(){
 		$(this).addClass("li_hover");
 	},function(){

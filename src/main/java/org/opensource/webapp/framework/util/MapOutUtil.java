@@ -1,19 +1,17 @@
 package org.opensource.webapp.framework.util;
 
+import org.opensource.webapp.framework.domain.BasicDomain;
+
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
-
-import org.hibernate.LazyInitializationException;
-import org.opensource.webapp.framework.domain.BasicDomain;
 
 /**
  * 利用泛型的特点，创建一个新对象，然后把传入的对象赋值到这个新的对象上。方便处理json序列化时的懒加载问题。
  * @author xiaopan
  *
  */
-public class MapOutUtil {
+public class MapOutUtil{
 	
 	@SuppressWarnings("unchecked")
 	public static <T> T mapOutObj(T o){

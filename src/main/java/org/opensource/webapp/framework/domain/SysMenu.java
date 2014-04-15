@@ -45,8 +45,8 @@ public class SysMenu extends BasicDomain implements Comparable<SysMenu>{
     private List<SysMenu> sysMenuList;
 
     //所有控件级别的功能选项
-    @OneToMany(cascade = CascadeType.REMOVE)
-    private Set<SysMenuController> sysMenuControllerSet;
+    @ElementCollection
+    private Set<String> sysMenuControllerSet;
 
     //所有数据级别功能的表达式选项
     @OneToMany(cascade = CascadeType.REMOVE)
@@ -127,11 +127,11 @@ public class SysMenu extends BasicDomain implements Comparable<SysMenu>{
         this.sysMenuList = sysMenuList;
     }
 
-    public Set<SysMenuController> getSysMenuControllerSet() {
+    public Set<String> getSysMenuControllerSet() {
         return sysMenuControllerSet;
     }
 
-    public void setSysMenuControllerSet(Set<SysMenuController> sysMenuControllerSet) {
+    public void setSysMenuControllerSet(Set<String> sysMenuControllerSet) {
         this.sysMenuControllerSet = sysMenuControllerSet;
     }
 

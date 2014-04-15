@@ -9,5 +9,4 @@
                 timeToIdleSeconds="300" 
                 timeToLiveSeconds="600"
                 overflowToDisk="false"/>
-
 </ehcache>
