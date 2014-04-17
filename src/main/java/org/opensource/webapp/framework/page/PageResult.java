@@ -2,7 +2,6 @@ package org.opensource.webapp.framework.page;
 
 import org.opensource.webapp.framework.util.LazySerializationUtil;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 public class PageResult<T> {
@@ -10,7 +9,7 @@ public class PageResult<T> {
 	// 总行数
 	private long total;
 	// 当前行结果集
-	private Collection<T> rows = new ArrayList<T>();
+	private Collection<T> rows = null;
 
     public PageResult() {
     }
@@ -29,13 +28,11 @@ public class PageResult<T> {
 	}
 
 	public Collection<T> getRows() {
-        return LazySerializationUtil.serializeCollections(rows);
-//		return MapOutUtil.mapOutList(rows);
+        return LazySerializationUtil.serializeCollection(rows);
 	}
 
 	public void setRows(Collection<T> rows) {
-		this.rows.clear();
-		this.rows.addAll(rows);
+		this.rows = rows;
 	}
 
 }

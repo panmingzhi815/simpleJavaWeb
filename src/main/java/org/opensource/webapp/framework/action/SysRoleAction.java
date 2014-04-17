@@ -1,15 +1,15 @@
 package org.opensource.webapp.framework.action;
 
-import java.util.List;
-import java.util.Map;
-
 import org.opensource.webapp.framework.domain.SysRole;
 import org.opensource.webapp.framework.service.SysRoleService;
-import org.opensource.webapp.framework.util.MapOutUtil;
+import org.opensource.webapp.framework.util.LazySerializationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -45,6 +45,6 @@ public class SysRoleAction {
     @RequestMapping(value="/getSysRoleList")
     @ResponseBody
     public List<SysRole> getSysRoleList(Long id){
-        return MapOutUtil.mapOutList(sysRoleService.getChildrenSysRoleById(id));
+        return LazySerializationUtil.serializeList(sysRoleService.getChildrenSysRoleById(id));
     }
 }

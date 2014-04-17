@@ -94,7 +94,7 @@ public class SysUserServiceImpl extends PageServiceImpl<SysUser> implements
             sysUserDao.save(sysUser);
             return true;
         }catch (Exception e){
-            LOGGER.error("assignRoleToUser invoke error! roleId:{},userId:{},exception;{}",roleId,userId,e);
+            LOGGER.error("assignRoleToUser invoke error! roleId:{},userId:{}",new Object[]{roleId,userId},e);
             return false;
         }
     }
@@ -108,7 +108,7 @@ public class SysUserServiceImpl extends PageServiceImpl<SysUser> implements
             sysUserDao.save(sysUser);
             return true;
         }catch (Exception e){
-            LOGGER.error("assignRoleToUser invoke error! roleId:{},userId:{},exception;{}",roleId,userId,e);
+            LOGGER.error("assignRoleToUser invoke error! roleId:{},userId:{}",new Object[]{roleId,userId},e);
             return false;
         }
     }

@@ -2,7 +2,7 @@ package org.opensource.webapp.framework.action;
 
 import org.opensource.webapp.framework.domain.SysMenu;
 import org.opensource.webapp.framework.service.SysMenuService;
-import org.opensource.webapp.framework.util.MapOutUtil;
+import org.opensource.webapp.framework.util.LazySerializationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,7 +38,7 @@ public class SysMenuAction {
     @RequestMapping(value="/getSysMenuList")
     @ResponseBody
     public List<SysMenu> getSysMenuList(Long id){
-        return MapOutUtil.mapOutList(sysMenuService.getChildrenSysMenuById(id));
+        return LazySerializationUtil.serializeList(sysMenuService.getChildrenSysMenuById(id));
     }
 	
 }
